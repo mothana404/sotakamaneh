@@ -189,7 +189,7 @@ const CandidateDetailsPage = () => {
                     className="absolute -bottom-3 -right-3 bg-gradient-to-br from-amber-400 to-amber-600 text-white px-6 py-3 rounded-full font-bold shadow-xl text-xl flex items-center gap-2"
                   >
                     <Icon icon="mdi:numeric" />
-                    {candidate.id}
+                    {candidate.constituency_id}
                   </motion.div>
                 </motion.div>
 

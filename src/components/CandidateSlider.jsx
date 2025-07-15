@@ -29,6 +29,7 @@ const CandidateSlider = () => {
             id: c.id,
             name: c.user.first_name + " " + c.user.last_name,
             list: c.party_bloc_name || "-",
+            constituency_id: c.constituency_id,
             province: c.constituency?.name || "-",
             sequence: c.list_number || c.id,
             image: c.profile_image || "https://www.elections.ab.ca/uploads/Candidate.png",
@@ -354,7 +355,7 @@ const CandidateSlider = () => {
                               animate={{ scale: 1 }}
                               transition={{ type: "spring", stiffness: 300 }}
                             >
-                              #{candidate.sequence}
+                              #{candidate.constituency_id}
                             </motion.div>
                           </div>
                         </div>

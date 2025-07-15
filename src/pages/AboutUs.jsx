@@ -98,7 +98,7 @@ const AboutUs = () => {
     },
     {
       phase: "المرحلة الثانية",
-      date: "بعد شهرين",
+      date: "قريبا",
       description: "إطلاق تطبيق الهاتف الذكي الكامل",
       status: "upcoming"
     },
@@ -153,7 +153,7 @@ const AboutUs = () => {
                   <h2 className="text-3xl font-bold text-blue-900 mb-6">رؤيتنا</h2>
                   <p className="text-gray-600 text-lg leading-relaxed mb-6">
                     نسعى لإحداث نقلة نوعية في العملية الانتخابية من خلال تطبيق "صوتك أمانة" 
-                    الذي سيكون متاحاً خلال شهرين. نؤمن بأن التحول الرقمي ليس مجرد رفاهية، 
+                    الذي سيكون متاح قريبا. نؤمن بأن التحول الرقمي ليس مجرد رفاهية، 
                     بل ضرورة لبناء ديمقراطية حقيقية وفعالة.
                   </p>
                   <p className="text-gray-600 text-lg leading-relaxed">

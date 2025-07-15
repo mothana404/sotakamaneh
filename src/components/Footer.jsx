@@ -189,7 +189,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <h5 className="font-semibold text-gray-900">البريد الإلكتروني</h5>
-                  <p className="text-gray-600" dir="ltr">info@sotakamanah.com</p>
+                  <p className="text-gray-600" dir="ltr">info@sawtakamana.com</p>
                 </div>
               </motion.div>
             </div>

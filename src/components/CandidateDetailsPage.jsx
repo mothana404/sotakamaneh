@@ -453,7 +453,7 @@ const ElectionCard = ({ candidate, fullName, profileImage }) => {
             className="relative w-40 h-40 rounded-full border-4 border-white shadow-xl object-cover"
           />
           <div className="absolute -bottom-2 -right-2 bg-gradient-to-br from-amber-400 to-amber-600 text-white px-4 py-2 rounded-full font-bold shadow-lg text-xl">
-            #{candidate.id}
+            #{candidate.constituency_id}
           </div>
         </div>
         <h2 className="text-3xl font-bold text-indigo-900 mb-2">{fullName}</h2>

@@ -174,7 +174,7 @@ const Footer = () => {
                   </svg>
                 </div>
                 <div>
-                  <h5 className="font-semibold text-gray-900">الخط الساخن</h5>
+                  <h5 className="font-semibold text-gray-900">الواتساب</h5>
                   <p className="text-gray-600" dir="ltr">+964 787 380 5425</p>
                 </div>
               </motion.div>

@@ -68,7 +68,7 @@ const CandidateDetailsPage = () => {
               // Fallback to download
               const url = canvas.toDataURL('image/png');
               const link = document.createElement('a');
-              link.download = `candidate-${candidate.id}.png`;
+              link.download = `candidate-${candidate.constituency_id}.png`;
               link.href = url;
               link.click();
             }
@@ -76,7 +76,7 @@ const CandidateDetailsPage = () => {
             // Fallback to download
             const url = canvas.toDataURL('image/png');
             const link = document.createElement('a');
-            link.download = `candidate-${candidate.id}.png`;
+            link.download = `candidate-${candidate.constituency_id}.png`;
             link.href = url;
             link.click();
           }
@@ -188,7 +188,7 @@ const CandidateDetailsPage = () => {
                     transition={{ delay: 0.5 }}
                     className="absolute -bottom-3 -right-3 bg-gradient-to-br from-amber-400 to-amber-600 text-white px-6 py-3 rounded-full font-bold shadow-xl text-xl flex items-center gap-2"
                   >
-                    <Icon icon="mdi:numeric" />
+                    {/* <Icon icon="mdi:numeric" /> */}
                     {candidate.constituency_id}
                   </motion.div>
                 </motion.div>
@@ -370,7 +370,7 @@ const CandidateDetailsPage = () => {
                   معلومات سريعة
                 </h3>
                 <div className="space-y-3">
-                  <QuickStat icon="mdi:numeric" label="الرقم التسلسلي" value={`#${candidate.id}`} />
+                  <QuickStat icon="" label="الرقم التسلسلي" value={`#${candidate.constituency_id}`} />
                   <QuickStat icon="mdi:account-group" label="الحزب/الكتلة" value={candidate.party_bloc_name || "مستقل"} />
                   <QuickStat icon="mdi:map-marker" label="الدائرة" value={candidate.constituency?.name || "غير محدد"} />
                   <QuickStat icon="mdi:format-list-numbered" label="رقم القائمة" value={candidate.list_number || "-"} />

@@ -182,7 +182,7 @@ const HeroSection = () => {
               {/* Main Image Container */}
               <div className="relative">
                 <img
-                  src={heroImage}
+                  src="https://nirij.org/wp-content/uploads/2025/05/ae52a08a-4996-470d-aac0-c667820657a3-960x540.jpeg"
                   alt="الانتخابات البرلمانية العراقية 2025"
                   className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover rounded-3xl shadow-2xl"
                   loading="lazy"

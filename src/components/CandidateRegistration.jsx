@@ -313,7 +313,7 @@ const CandidateRegistration = () => {
                       className="w-full appearance-none px-5 py-3 pr-12 border border-indigo-300 rounded-xl shadow-sm bg-white text-gray-900 text-base font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-500 transition-all duration-150 hover:border-indigo-400 cursor-pointer"
                       required
                     >
-                      <option value="">اختر القائمة أو الكتلة</option>
+                      <option value="">اختر  المحافظة </option>
                       {listOptions.map(option => (
                         <option key={option.id} value={option.list_number || option.id} className="text-gray-900">
                           {option.list_number ? `قائمة ${option.list_number} - ${option.name}` : option.name}

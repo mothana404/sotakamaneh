@@ -46,43 +46,59 @@ const CandidateDetailsPage = () => {
     window.location.reload();
   };
 
+  // Replace handleShare to only share the candidate page link, not an image
   const handleShare = async () => {
+    const fullName = candidate.user ? `${candidate.user.first_name} ${candidate.user.last_name}` : "غير محدد";
+    const candidateUrl = `${window.location.origin}/candidate/${candidate.id}`;
+    const shareText = `تعرف على المرشح ${fullName} في انتخابات 2025\nالدائرة: ${candidate.constituency?.name || "غير محدد"}\nالحزب/الكتلة: ${candidate.party_bloc_name || "مستقل"}\n\nللمزيد من المعلومات: ${candidateUrl}`;
+    
     if (cardRef.current) {
       try {
         const canvas = await html2canvas(cardRef.current, {
           scale: 2,
-          backgroundColor: '#ffffff',
+          backgroundColor: '#fff',
           logging: false,
         });
         
         canvas.toBlob(async (blob) => {
-          if (navigator.share && blob) {
-            const file = new File([blob], `candidate-${candidate.id}.png`, { type: 'image/png' });
+          if (navigator.canShare && navigator.canShare({ files: [new File([blob], 'election-card.png', { type: 'image/png' })] })) {
+            const file = new File([blob], `election-card-${candidate.id}.png`, { type: 'image/png' });
             try {
               await navigator.share({
                 files: [file],
                 title: `بطاقة المرشح: ${fullName}`,
-                text: `تعرف على المرشح ${fullName} - ${candidate.party_bloc_name || "مستقل"}`
+                text: shareText,
+                url: candidateUrl
               });
+              return;
             } catch (err) {
-              // Fallback to download
-              const url = canvas.toDataURL('image/png');
-              const link = document.createElement('a');
-              link.download = `candidate-${candidate.constituency_id}.png`;
-              link.href = url;
-              link.click();
+              console.error('Share failed:', err);
             }
-          } else {
-            // Fallback to download
-            const url = canvas.toDataURL('image/png');
+          }
+          
+          // Fallback: download image and copy link
+          const url = canvas.toDataURL('image/png');
+          try {
+            await navigator.clipboard.writeText(candidateUrl);
             const link = document.createElement('a');
-            link.download = `candidate-${candidate.constituency_id}.png`;
+            link.download = `election-card-${fullName}.png`;
             link.href = url;
             link.click();
+            
+            // Show success message
+            alert(`تم تحميل البطاقة الانتخابية وتم نسخ رابط صفحة المرشح:\n${candidateUrl}`);
+          } catch (err) {
+            alert(`تم تحميل البطاقة الانتخابية. رابط صفحة المرشح:\n${candidateUrl}`);
           }
         });
       } catch (err) {
-        console.error('Error sharing:', err);
+        // Fallback: just copy link
+        try {
+          await navigator.clipboard.writeText(candidateUrl);
+          alert(`تم نسخ رابط صفحة المرشح:\n${candidateUrl}`);
+        } catch (err2) {
+          prompt('انسخ رابط صفحة المرشح:', candidateUrl);
+        }
       }
     }
   };
@@ -393,34 +409,24 @@ const CandidateDetailsPage = () => {
               </motion.div> */}
 
               {/* Action Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="space-y-3"
-              >
-                <button
-                  onClick={handlePrint}
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                >
-                  <Icon icon="mdi:printer" className="text-xl" />
-                  طباعة البطاقة الانتخابية
-                </button>
-                <button
-                  onClick={handleShare}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                >
-                  <Icon icon="mdi:share-variant" className="text-xl" />
-                  مشاركة البطاقة الانتخابية
-                </button>
-                <button
-                  onClick={() => navigate(-1)}
-                  className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                >
-                  <Icon icon="mdi:arrow-right" className="text-xl" />
-                  العودة للقائمة
-                </button>
-              </motion.div>
+              <motion.button
+  onClick={handleShare}
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.98 }}
+  className="election-share-btn-alt"
+>
+  <div className="election-share-btn__content">
+    <div className="election-share-btn__icon-wrapper">
+      <Icon icon="mdi:share-variant" className="election-share-btn__icon" />
+      <div className="election-share-btn__icon-bg"></div>
+    </div>
+    <div className="election-share-btn__text-wrapper">
+      <span className="election-share-btn__title">مشاركة البطاقة الانتخابية</span>
+      <span className="election-share-btn__subtitle">شارك معلومات المرشح مع الآخرين</span>
+    </div>
+    <Icon icon="mdi:chevron-left" className="election-share-btn__arrow" />
+  </div>
+</motion.button>
             </div>
           </div>
         </div>
@@ -432,110 +438,42 @@ const CandidateDetailsPage = () => {
 // Election Card Component for Print/Share
 const ElectionCard = ({ candidate, fullName, profileImage }) => {
   const currentYear = new Date().getFullYear();
-  
   return (
-    <div className="w-[600px] h-[800px] bg-white p-8 flex flex-col" dir="rtl">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-900 to-indigo-700 text-white p-6 rounded-t-3xl -m-8 mb-6">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold mb-2">البطاقة الانتخابية</h1>
-          <p className="text-xl">انتخابات {currentYear}</p>
-        </div>
+    <div className="w-[400px] h-[600px] bg-white p-0 flex flex-col items-center justify-center relative overflow-hidden shadow-2xl rounded-3xl border-4 border-[#1a237e]" dir="rtl">
+      {/* Decorative Blue Accents */}
+      <div className="absolute -top-20 -left-20 w-60 h-60 bg-[#1a237e]/10 rounded-full blur-2xl z-0" />
+      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-[#283593]/20 rounded-full blur-2xl z-0" />
+      {/* Profile Image */}
+      <div className="relative z-10 mt-12 mb-4 flex items-center justify-center">
+        <div className="absolute -inset-2 bg-gradient-to-br from-[#1a237e] to-[#283593] rounded-full blur-md" />
+        <img
+          src={profileImage}
+          alt={fullName}
+          className="relative w-40 h-40 rounded-full border-4 border-[#1a237e] shadow-xl object-cover z-10 bg-white"
+          style={{ background: '#fff', objectFit: 'cover' }}
+        />
       </div>
-
-      {/* Profile Section */}
-      <div className="flex flex-col items-center mb-6">
-        <div className="relative mb-4">
-          <div className="absolute -inset-2 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full"></div>
-          <img
-            src={profileImage}
-            alt={fullName}
-            className="relative w-40 h-40 rounded-full border-4 border-white shadow-xl object-cover"
-          />
-          <div className="absolute -bottom-2 -right-2 bg-gradient-to-br from-amber-400 to-amber-600 text-white px-4 py-2 rounded-full font-bold shadow-lg text-xl">
-            #{candidate.constituency_id}
-          </div>
-        </div>
-        <h2 className="text-3xl font-bold text-indigo-900 mb-2">{fullName}</h2>
-        {candidate.campaign_slogan && (
-          <p className="text-lg text-gray-600 italic text-center">"{candidate.campaign_slogan}"</p>
-        )}
+      {/* Name */}
+      <h2 className="z-10 text-3xl font-extrabold text-[#1a237e] drop-shadow-lg mb-2 text-center">{fullName}</h2>
+      {/* Party Bloc Name */}
+      <div className="z-10 flex flex-wrap gap-2 justify-center mb-2">
+        <span className="bg-[#e3eafc] text-[#1a237e] font-bold px-4 py-2 rounded-full shadow text-lg border-2 border-[#1a237e]/20">
+          {candidate.party_bloc_name || "مستقل"}
+        </span>
       </div>
-
-      {/* Info Grid */}
-      <div className="bg-gray-50 rounded-2xl p-6 mb-6 flex-1">
-        <div className="grid grid-cols-2 gap-4">
-          <InfoItem
-            icon="mdi:account-group"
-            label="الحزب/الكتلة"
-            value={candidate.party_bloc_name || "مستقل"}
-          />
-          <InfoItem
-            icon="mdi:map-marker"
-            label="الدائرة الانتخابية"
-            value={candidate.constituency?.name || "غير محدد"}
-          />
-          <InfoItem
-            icon="mdi:format-list-numbered"
-            label="رقم القائمة"
-            value={candidate.list_number || "-"}
-          />
-          <InfoItem
-            icon="mdi:briefcase"
-            label="المنصب الحالي"
-            value={candidate.current_position || "غير محدد"}
-          />
-        </div>
-
-        {/* Brief Bio */}
-        {candidate.biography && (
-          <div className="mt-6">
-            <h3 className="font-bold text-indigo-900 mb-2 flex items-center gap-2">
-              <Icon icon="mdi:text" className="text-xl" />
-              نبذة مختصرة
-            </h3>
-            <p className="text-gray-700 text-sm leading-relaxed line-clamp-3">
-              {candidate.biography}
-            </p>
-          </div>
-        )}
-
-        {/* Contact Info */}
-        <div className="mt-6 pt-6 border-t border-gray-200">
-          <h3 className="font-bold text-indigo-900 mb-3 flex items-center gap-2">
-            <Icon icon="mdi:contacts" className="text-xl" />
-            معلومات التواصل
-          </h3>
-          <div className="grid grid-cols-2 gap-3 text-sm">
-            {candidate.phone && (
-              <div className="flex items-center gap-2">
-                <Icon icon="mdi:phone" className="text-indigo-600" />
-                <span>{candidate.phone}</span>
-              </div>
-            )}
-            {candidate.user?.email && (
-              <div className="flex items-center gap-2">
-                <Icon icon="mdi:email" className="text-indigo-600" />
-                <span className="truncate">{candidate.user.email}</span>
-              </div>
-            )}
-            {candidate.website_link && (
-              <div className="flex items-center gap-2 col-span-2">
-                <Icon icon="mdi:web" className="text-indigo-600" />
-                <span className="truncate">{candidate.website_link}</span>
-              </div>
-            )}
-          </div>
-        </div>
+      {/* Constituency ID */}
+      <div className="z-10 flex justify-center mb-6">
+        <span className="bg-gradient-to-r from-[#1a237e] to-[#283593] text-white font-bold px-6 py-2 rounded-full shadow-lg text-xl border-2 border-[#1a237e] tracking-widest">
+          #{candidate.constituency_id}
+        </span>
       </div>
-
-      {/* Footer */}
-      <div className="bg-gradient-to-r from-indigo-900 to-indigo-700 text-white p-4 rounded-b-3xl -m-8 mt-auto">
-        <div className="text-center text-sm">
-          <p>للمزيد من المعلومات، يرجى زيارة الموقع الرسمي للانتخابات</p>
-          <p className="font-bold mt-1">صوتك أمانة • شارك في بناء المستقبل</p>
-        </div>
+      {/* Year & App Name */}
+      <div className="absolute bottom-0 left-0 right-0 pb-6 flex flex-col items-center z-10">
+        <span className="text-[#1a237e]/80 font-bold text-lg mb-1">انتخابات {currentYear}</span>
+        <span className="text-[#1a237e] font-extrabold text-2xl tracking-wider drop-shadow">صوتك أمانة</span>
       </div>
+      {/* Subtle overlay for effect */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1a237e]/5 to-transparent z-0" />
     </div>
   );
 };
@@ -569,32 +507,41 @@ const ContentCard = ({ title, children, accent, icon }) => (
 );
 
 // ContactItem: reduce padding
-const ContactItem = ({ icon, label, value, isLink }) => (
-  <motion.div
-    whileHover={{ scale: 1.02 }}
-    className="bg-gray-50 p-3 rounded-xl border border-gray-200"
-  >
-    <div className="flex items-center gap-2">
-      <Icon icon={icon} className="text-2xl text-indigo-600" />
-      <div className="flex-1">
-        <p className="text-sm text-gray-500 mb-1">{label}</p>
-        {isLink && value !== "غير متاح" ? (
-          <a
-            href={value}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-indigo-600 hover:text-indigo-700 break-all flex items-center gap-1"
-          >
-            {value}
-            <Icon icon="mdi:open-in-new" className="text-sm" />
-          </a>
-        ) : (
-          <p className="font-medium text-gray-800 break-all">{value}</p>
-        )}
+const ContactItem = ({ icon, label, value, isLink }) => {
+  // Mask phone number if label is 'الهاتف' and value is a string
+  let displayValue = value;
+  if (label === "الهاتف" && typeof value === "string" && value !== "غير متاح") {
+    if (value.length > 5) {
+      displayValue = value.slice(0, 5) + '**';
+    }
+  }
+  return (
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      className="bg-gray-50 p-3 rounded-xl border border-gray-200"
+    >
+      <div className="flex items-center gap-2">
+        <Icon icon={icon} className="text-2xl text-indigo-600" />
+        <div className="flex-1">
+          <p className="text-sm text-gray-500 mb-1">{label}</p>
+          {isLink && value !== "غير متاح" ? (
+            <a
+              href={value}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-indigo-600 hover:text-indigo-700 break-all flex items-center gap-1"
+            >
+              {displayValue}
+              <Icon icon="mdi:open-in-new" className="text-sm" />
+            </a>
+          ) : (
+            <p className="font-medium text-gray-800 break-all">{displayValue}</p>
+          )}
+        </div>
       </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
   
   const QuickStat = ({ icon, label, value }) => (
     <div className="flex justify-between items-center py-2 border-b border-white/20 last:border-0">

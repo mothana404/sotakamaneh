@@ -143,8 +143,8 @@ const CandidateRegistration = () => {
   // Validation function
   const validate = () => {
     const newErrors = {};
-    if (!formData.first_name.trim()) newErrors.first_name = 'الاسم الأول مطلوب';
-    if (!formData.last_name.trim()) newErrors.last_name = 'الاسم الأخير مطلوب';
+    if (!formData.first_name.trim()) newErrors.first_name = 'الأسم الكامل  مطلوب';
+    if (!formData.last_name.trim()) newErrors.last_name = 'اللقب  ';
     if (!formData.email.trim()) newErrors.email = 'البريد الإلكتروني مطلوب';
     if (!formData.constituency_id.trim()) newErrors.constituency_id = 'معرف الدائرة الانتخابية مطلوب';
     if (!formData.party_bloc_name.trim()) newErrors.party_bloc_name = 'اسم الحزب أو الكتلة مطلوب';
@@ -253,14 +253,14 @@ const CandidateRegistration = () => {
             <form onSubmit={handleSubmit} className="space-y-6" encType="multipart/form-data">
               {/* First Name */}
               <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">الاسم الأول *</label>
-                <input type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل الاسم الأول" />
+                <label className="block text-sm font-medium text-gray-700 mb-2">الأسم الكامل *</label>
+                <input type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل الاسم الكامل" />
                 {errors.first_name && <div className="text-red-500 text-sm mt-1 break-words">{errors.first_name}</div>}
               </div>
               {/* Last Name */}
               <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">الاسم الأخير *</label>
-                <input type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل الاسم الأخير" />
+                <label className="block text-sm font-medium text-gray-700 mb-2"> اللقب *</label>
+                <input type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل اللقب " />
                 {errors.last_name && <div className="text-red-500 text-sm mt-1 break-words">{errors.last_name}</div>}
               </div>
               {/* Email */}
@@ -272,8 +272,8 @@ const CandidateRegistration = () => {
 
               {/* Constituency ID */}
               <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">معرف الدائرة الانتخابية *</label>
-                <input type="number" name="constituency_id" value={formData.constituency_id} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل رقم الدائرة الانتخابية" />
+                <label className="block text-sm font-medium text-gray-700 mb-2"> التسلسل*</label>
+                <input type="number" name="constituency_id" value={formData.constituency_id} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل الرقم" />
                 {errors.constituency_id && <div className="text-red-500 text-sm mt-1 break-words">{errors.constituency_id}</div>}
               </div>
               {/* Party Bloc Name */}
@@ -301,7 +301,7 @@ const CandidateRegistration = () => {
                   <div className="text-blue-600 text-sm">جاري تحميل القوائم...</div>
                 ) : listError ? (
                   <>
-                    <input type="text" name="list_number" value={formData.list_number} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل رقم القائمة أو الكتلة" />
+                    <input type="text" name="list_number" value={formData.list_number} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="اختر المحافظة" />
                     <div className="text-red-500 text-xs mt-1">{listError}</div>
                   </>
                 ) : listOptions.length > 0 ? (
@@ -374,12 +374,12 @@ const CandidateRegistration = () => {
               {/* Profile Image */}
               <div className="group">
                 <label className="block text-sm font-medium text-gray-700 mb-2">صورة الملف الشخصي (اختياري)</label>
-                <input type="file" accept="image/*" onChange={e => handleFileChange(e, 'profile')} />
+                <input type="file" accept="image/*" onChange={e => handleFileChange(e, 'profile')} required />
                   </div>
               {/* Profile Banner Image */}
               <div className="group">
                 <label className="block text-sm font-medium text-gray-700 mb-2">صورة الغلاف (اختياري)</label>
-                <input type="file" accept="image/*" onChange={e => handleFileChange(e, 'banner')} />
+                <input type="file" accept="image/*" onChange={e => handleFileChange(e, 'banner')}  />
                 </div>
               {/* Social Media Links (Optional) */}
               <div className="grid grid-cols-2 gap-4">
@@ -415,7 +415,7 @@ const CandidateRegistration = () => {
               {/* Submit Button */}
               <div className="pt-6">
                 <button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-lg text-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                  {submitting ? 'جاري الإرسال...' : 'تسجيل البيانات'}
+                  {submitting ? 'جاري الإرسال...' : 'اضغط هنا لحفظ البيانات '}
                 </button>
               </div>
             </form>

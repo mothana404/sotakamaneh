@@ -22,7 +22,7 @@ const Navbar = () => {
     { name: "من نحن", path: "/about" },
     { name: "حلول المرشحين", path: "/candidate-solutions" },
     { name: "حلول الناخبين", path: "/voter-solutions" },
-    { name: "تسجيل مسبق", path: "/register" },
+    { name: "سجل كمرشح", path: "/register" },
   ];
 
   return (

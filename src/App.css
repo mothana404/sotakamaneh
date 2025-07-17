@@ -13,33 +13,230 @@
   }
 }
 
-@media print {
-    @page {
-      size: A4;
-      margin: 0;
+/* Election Share Button Styles */
+.election-share-btn {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    color: white;
+    padding: 0;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(26, 35, 126, 0.3);
+  }
+  
+  .election-share-btn:hover {
+    box-shadow: 0 12px 32px rgba(26, 35, 126, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  .election-share-btn:active {
+    transform: translateY(0);
+  }
+  
+  .election-share-btn__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    gap: 16px;
+    z-index: 2;
+  }
+  
+  .election-share-btn__icon-wrapper {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .election-share-btn__icon {
+    font-size: 28px;
+    z-index: 2;
+    position: relative;
+    color: white;
+  }
+  
+  .election-share-btn__icon-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .election-share-btn__text-wrapper {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .election-share-btn__title {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    display: block;
+  }
+  
+  .election-share-btn__subtitle {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.9;
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    display: block;
+  }
+  
+  .election-share-btn__arrow {
+    font-size: 24px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+  
+  .election-share-btn:hover .election-share-btn__arrow {
+    transform: translateX(-4px);
+    opacity: 1;
+  }
+  
+  .election-share-btn__border {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  /* Shimmer effect */
+  .election-share-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+  
+  .election-share-btn:hover::before {
+    left: 100%;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .election-share-btn__content {
+      padding: 16px 20px;
+      gap: 12px;
     }
     
-    body {
-      margin: 0;
-      padding: 0;
+    .election-share-btn__icon-wrapper {
+      width: 48px;
+      height: 48px;
     }
     
-    .print\:hidden {
-      display: none !important;
+    .election-share-btn__icon {
+      font-size: 24px;
     }
     
-    .print\:block {
-      display: block !important;
+    .election-share-btn__title {
+      font-size: 16px;
     }
     
-    #election-card {
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      padding-right: 20px !important;
-      justify-content: center;
-      align-items: center;
-      background: rgb(221, 221, 255);
+    .election-share-btn__subtitle {
+      font-size: 12px;
+    }
+  }
+  
+  /* Alternative formal design - Government style */
+  .election-share-btn-alt {
+    position: relative;
+    width: 100%;
+    background: white;
+    color: #1a237e;
+    padding: 0;
+    border-radius: 16px;
+    border: 3px solid #1a237e;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(26, 35, 126, 0.1);
+  }
+  
+  .election-share-btn-alt:hover {
+    background: #1a237e;
+    color: white;
+    box-shadow: 0 8px 24px rgba(26, 35, 126, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .election-share-btn-alt .election-share-btn__icon,
+  .election-share-btn-alt .election-share-btn__arrow {
+    transition: color 0.3s ease;
+  }
+  
+  .election-share-btn-alt:hover .election-share-btn__icon,
+  .election-share-btn-alt:hover .election-share-btn__arrow {
+    color: white;
+  }
+  
+  .election-share-btn-alt .election-share-btn__icon-bg {
+    background: rgba(26, 35, 126, 0.1);
+    border: 1px solid rgba(26, 35, 126, 0.2);
+  }
+  
+  .election-share-btn-alt:hover .election-share-btn__icon-bg {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Loading state */
+  .election-share-btn--loading {
+    pointer-events: none;
+    opacity: 0.8;
+  }
+  
+  .election-share-btn--loading .election-share-btn__icon {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Success animation */
+  .election-share-btn--success .election-share-btn__icon-wrapper {
+    animation: success-bounce 0.6s ease;
+  }
+  
+  @keyframes success-bounce {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
     }
   }
 

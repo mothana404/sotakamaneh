@@ -279,22 +279,25 @@ const AboutUs = () => {
             </motion.h2>
             
             <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200 hidden sm:block"></div>
               <div className="space-y-12">
                 {timeline.map((item, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
-                    className={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+                    className={`relative flex items-center sm:${index % 2 === 0 ? 'justify-start' : 'justify-end'} justify-center`}
                   >
-                    <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pl-8' : 'text-left pr-8'}`}>
-                      <div className={`bg-white rounded-2xl shadow-xl p-6 ${item.status === 'active' ? 'border-2 border-blue-500' : ''}`}>
+                    {/* Mobile vertical line */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-200 sm:hidden z-0"></div>
+                    <div className={`w-full sm:w-5/12 ${index % 2 === 0 ? 'sm:text-right sm:pl-8' : 'sm:text-left sm:pr-8'} text-center px-2 pt-12 sm:pt-0 z-10 relative`}> 
+                      <div className={`bg-white rounded-2xl shadow-xl p-6 ${item.status === 'active' ? 'border-2 border-blue-500' : ''}`}
+                        style={{ zIndex: 20 }}>
                         <h3 className="text-xl font-bold text-blue-900">{item.phase}</h3>
                         <p className="text-blue-600 font-semibold mb-2">{item.date}</p>
                         <p className="text-gray-600">{item.description}</p>
                       </div>
                     </div>
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center z-20 sm:z-10" style={{ top: '0' }}>
                       {item.status === 'active' && (
                         <motion.div
                           className="w-3 h-3 bg-white rounded-full"

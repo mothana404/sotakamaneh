@@ -75,9 +75,9 @@ const HeroSection = () => {
             >
               <span className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur opacity-30 w-60"></span>
               <span className="relative inline-flex items-center gap-2 bg-gradient-to-l from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full text-sm font-bold tracking-wide shadow-lg">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                {/* <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 1.414L10.586 9.5H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-                </svg>
+                </svg> */}
                 الانتخابات البرلمانية العراقية 2025
               </span>
             </motion.div>

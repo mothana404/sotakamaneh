@@ -46,7 +46,7 @@ const CandidateSlider = () => {
 
   if (loading) {
     return (
-      <section className="py-24 bg-gradient-to-b from-white via-blue-50/20 to-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 flex justify-center items-center min-h-[400px]">
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
@@ -59,7 +59,7 @@ const CandidateSlider = () => {
 
   if (error) {
     return (
-      <section className="py-24 bg-gradient-to-b from-white via-blue-50/20 to-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 flex justify-center items-center min-h-[400px]">
           <div className="text-center">
             <div className="text-red-600 text-xl mb-4">⚠️</div>
@@ -71,36 +71,45 @@ const CandidateSlider = () => {
   }
 
   return (
-    <section
-      className="py-24 relative overflow-hidden bg-gradient-to-b from-white via-blue-50/20 to-white"
-      dir="rtl"
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(90deg, #3b82f6 1px, transparent 1px),
-              linear-gradient(#3b82f6 1px, transparent 1px)
-            `,
-            backgroundSize: "50px 50px",
-          }}
-        />
-      </div>
+    <section className="py-20 relative overflow-hidden bg-white" dir="rtl">
+      {/* Creative Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Hexagon Pattern - Top Right */}
+        <div className="absolute -top-24 -right-24 opacity-[0.03]">
+          <svg width="400" height="400" viewBox="0 0 400 400">
+            <pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse">
+              <polygon points="24.5,0 49,14.5 49,43.5 24.5,58 0,43.5 0,14.5" fill="none" stroke="#1e40af" strokeWidth="0.5"/>
+            </pattern>
+            <rect width="400" height="400" fill="url(#hexagons)" />
+          </svg>
+        </div>
 
-      {/* Floating Elements */}
-      <motion.div
-        className="absolute top-20 right-10 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-20"
-        animate={{
-          y: [0, 50, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+        {/* Abstract Circles - Bottom Left */}
+        <motion.div 
+          className="absolute -bottom-32 -left-32"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="w-64 h-64 rounded-full border border-blue-100 opacity-30"></div>
+          <div className="absolute inset-8 rounded-full border border-blue-100 opacity-40"></div>
+          <div className="absolute inset-16 rounded-full border border-blue-100 opacity-50"></div>
+        </motion.div>
+
+        {/* Floating Dots */}
+        <motion.div
+          className="absolute top-40 left-1/4 w-2 h-2 bg-blue-200 rounded-full"
+          animate={{ y: [-20, 20, -20], opacity: [0.3, 0.7, 0.3] }}
+          transition={{ duration: 4, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-40 right-1/3 w-3 h-3 bg-blue-300 rounded-full"
+          animate={{ y: [20, -20, 20], opacity: [0.4, 0.8, 0.4] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+
+        {/* Gradient Mesh */}
+        <div className="absolute top-0 left-1/2 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-20 -translate-x-1/2"></div>
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Section Header */}
@@ -110,25 +119,21 @@ const CandidateSlider = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px w-24 bg-gradient-to-r from-transparent to-blue-600"></div>
-            <span className="text-blue-700 font-light tracking-widest text-sm uppercase">
-              مرشحو الانتخابات البرلمانية
-            </span>
-            <div className="h-px w-24 bg-gradient-to-l from-transparent to-blue-600"></div>
+          {/* Title Decoration */}
+          <div className="flex items-center justify-center mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-[2px] bg-gradient-to-r from-transparent to-blue-600"></div>
+              <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+              <div className="w-12 h-[2px] bg-gradient-to-l from-transparent to-blue-600"></div>
+            </div>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
-            تعرف على
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-700">
-              {" "}
-              المرشحين
-            </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            <span className="text-blue-600">المرشحون</span> للانتخابات البرلمانية
           </h2>
 
-          <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto">
-            استعرض قائمة المرشحين للانتخابات البرلمانية وتعرف على برامجهم
-            الانتخابية
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            تعرف على المرشحين وبرامجهم الانتخابية للدورة البرلمانية القادمة
           </p>
         </motion.div>
 
@@ -139,134 +144,80 @@ const CandidateSlider = () => {
             spaceBetween={24}
             slidesPerView={1}
             navigation={{
-              nextEl: ".swiper-button-next-custom",
-              prevEl: ".swiper-button-prev-custom",
+              nextEl: ".custom-next",
+              prevEl: ".custom-prev",
             }}
             pagination={{
               clickable: true,
-              dynamicBullets: true,
+              renderBullet: (index, className) => {
+                return `<span class="${className} custom-bullet"></span>`;
+              },
             }}
             autoplay={{
-              delay: 5000,
+              delay: 4000,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
             }}
             breakpoints={{
-              640: { slidesPerView: 2 },
-              768: { slidesPerView: 3 },
-              1024: { slidesPerView: 4 },
-              1280: { slidesPerView: 5 },
+              480: { slidesPerView: 2, spaceBetween: 16 },
+              768: { slidesPerView: 3, spaceBetween: 20 },
+              1024: { slidesPerView: 4, spaceBetween: 24 },
+              1280: { slidesPerView: 5, spaceBetween: 24 },
             }}
-            className="pb-16"
+            className="candidate-swiper"
           >
             {candidates.map((candidate, index) => (
               <SwiperSlide key={candidate.id}>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="h-full w-64"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <Link
-                    to={`/candidate/${candidate.id}`}
-                    className="block h-full"
-                  >
-                    <motion.div
-                      className="relative w-80 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full border border-gray-100"
-                      whileHover={{ y: -5 }}
-                    >
-                      {/* Top Border Accent */}
-                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-blue-700"></div>
-
-                      {/* Candidate Image */}
-                      <div className="relative h-48 bg-gradient-to-b from-blue-50 to-blue-100 overflow-hidden">
+                  <Link to={`/candidate/${candidate.id}`} className="block group">
+                    <div className="relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100 flex flex-col" style={{ minHeight: '340px', height: '340px' }}>
+                      {/* Image Container - Top 50% */}
+                      <div className="relative" style={{ height: '60%' }}>
                         <img
                           src={candidate.image}
                           alt={candidate.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 border-b-2 border-blue-100"
                           onError={(e) => {
-                            e.target.src =
-                              "https://www.elections.ab.ca/uploads/Candidate.png";
+                            e.target.src = "https://www.elections.ab.ca/uploads/Candidate.png";
                           }}
+                          style={{ height: '100%', minHeight: '100px', maxHeight: '200px', background: '#f4f7fa' }}
                         />
-
                         {/* Constituency Badge */}
-                        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
-                          <span className="text-blue-700 font-bold text-sm">
-                            {candidate.constituency_id}
-                          </span>
+                        <div className="absolute top-3 right-3 bg-blue-700 text-white px-3 py-1.5 rounded-full shadow-md text-xs font-semibold border border-blue-200">
+                          دائرة {candidate.constituency_id}
                         </div>
                       </div>
 
-                      {/* Candidate Info */}
-                      <div className="p-5">
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 text-center line-clamp-1">
+                      {/* Info Section - Bottom 50% */}
+                      <div className="flex-1 flex flex-col justify-between p-4 space-y-2 bg-white">
+                        {/* Name */}
+                        <h3 className="text-lg font-bold text-blue-900 text-center truncate mb-1">
                           {candidate.name}
                         </h3>
-
-                        {/* Info Grid */}
-                        <div className="space-y-2">
-                          {/* List/Party */}
-                          <div className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg">
-                            <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <svg
-                                className="w-4 h-4 text-blue-600"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                                />
-                              </svg>
-                            </div>
-                            <span className="text-gray-700 text-sm font-medium line-clamp-1 flex-1">
-                              {candidate.list}
-                            </span>
-                          </div>
-
-                          {/* Province */}
-                          <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg">
-                            <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <svg
-                                className="w-4 h-4 text-gray-600"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                />
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                              </svg>
-                            </div>
-                            <span className="text-gray-700 text-sm font-medium line-clamp-1 flex-1">
-                              {candidate.province}
-                            </span>
+                        {/* Party/List - Compact Design */}
+                        <div className="flex items-center justify-center gap-2 mb-1">
+                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                          <p className="text-sm text-gray-700 truncate font-medium">{candidate.list}</p>
+                        </div>
+                        {/* Province - Very Subtle */}
+                        <p className="text-xs text-gray-500 text-center truncate mb-2">
+                          {candidate.province}
+                        </p>
+                        {/* Hover Action Bar */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-blue-700 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-b-3xl border-t border-blue-100">
+                          <div className="flex items-center justify-center gap-2 text-white">
+                            <span className="text-sm font-medium">عرض التفاصيل</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
                           </div>
                         </div>
-
-                        {/* View Details Button */}
-                        <motion.div
-                          className="mt-4 w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center py-2 rounded-lg font-medium text-sm shadow-md hover:shadow-lg transition-shadow duration-300"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          عرض التفاصيل
-                        </motion.div>
                       </div>
-                    </motion.div>
+                    </div>
                   </Link>
                 </motion.div>
               </SwiperSlide>
@@ -274,59 +225,38 @@ const CandidateSlider = () => {
           </Swiper>
 
           {/* Custom Navigation Buttons */}
-          <button className="swiper-button-prev-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all group flex items-center justify-center -mr-6">
-            <svg
-              className="w-5 h-5 text-gray-600 group-hover:text-blue-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
+          <button className="custom-prev absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-4 lg:-mr-6 bg-white w-10 h-10 lg:w-12 lg:h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group hover:bg-blue-600">
+            <svg className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <button className="swiper-button-next-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm w-12 h-12 rounded-full shadow-lg hover:shadow-xl transition-all group flex items-center justify-center -ml-6">
-            <svg
-              className="w-5 h-5 text-gray-600 group-hover:text-blue-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          
+          <button className="custom-next absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 lg:-ml-6 bg-white w-10 h-10 lg:w-12 lg:h-12 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group hover:bg-blue-600">
+            <svg className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
 
         {/* View All Button */}
         <motion.div
-          className="text-center mt-12"
+          className="text-center mt-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.8 }}
         >
           <Link to="/candidates">
             <motion.button
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="group relative inline-flex items-center gap-3 px-8 py-3 bg-blue-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.98 }}
             >
-              عرض جميع المرشحين
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
+              {/* Button Background Animation */}
+              <div className="absolute inset-0 bg-blue-700 transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+              
+              <span className="relative z-10">عرض جميع المرشحين</span>
+              <svg className="relative z-10 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </motion.button>
           </Link>
@@ -334,43 +264,51 @@ const CandidateSlider = () => {
       </div>
 
       <style jsx global>{`
-        .swiper {
-          padding: 20px 0 60px 0;
+        .candidate-swiper {
+          padding: 10px 10px 50px 10px;
         }
 
-        .swiper-slide {
-          height: auto;
+        .candidate-swiper .swiper-pagination {
+          bottom: 0;
         }
 
-        .swiper-pagination {
-          bottom: 0 !important;
-        }
-
-        .swiper-pagination-bullet {
+        .candidate-swiper .custom-bullet {
           width: 8px;
           height: 8px;
-          background: #cbd5e1;
+          background: #e5e7eb;
           opacity: 1;
+          margin: 0 4px;
           transition: all 0.3s ease;
+          cursor: pointer;
         }
 
-        .swiper-pagination-bullet-active {
-          width: 32px;
+        .candidate-swiper .custom-bullet.swiper-pagination-bullet-active {
+          width: 24px;
           height: 8px;
           border-radius: 4px;
-          background: linear-gradient(to right, #2563eb, #1d4ed8);
+          background: #2563eb;
         }
 
-        .swiper-button-next-custom:after,
-        .swiper-button-prev-custom:after {
-          display: none;
-        }
-
-        @media (max-width: 640px) {
-          .swiper-button-next-custom,
-          .swiper-button-prev-custom {
+        @media (max-width: 768px) {
+          .custom-prev,
+          .custom-next {
             display: none;
           }
+          
+          .candidate-swiper {
+            padding: 10px 0 40px 0;
+          }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .custom-prev svg,
+        [dir="rtl"] .custom-next svg {
+          transform: rotate(180deg);
+        }
+
+        [dir="rtl"] .group:hover .custom-prev svg,
+        [dir="rtl"] .group:hover .custom-next svg {
+          transform: rotate(180deg) translateX(-4px);
         }
       `}</style>
     </section>

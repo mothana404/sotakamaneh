@@ -262,9 +262,6 @@ const Footer = () => {
               <p className="text-gray-600 text-sm">
                 © {currentYear} صوتك أمانة. جميع الحقوق محفوظة.
               </p>
-              <p className="text-gray-500 text-xs mt-1">
-                منصة الانتخابات البرلمانية العراقية
-              </p>
             </div>
           </div>
         </motion.div>

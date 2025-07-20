@@ -4,11 +4,11 @@ import ourmissionimage from "../assets/Picture2.jpg";
 
 const MissionSection = () => {
   const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.5, ease: "easeOut" }
     }
   };
 
@@ -17,7 +17,7 @@ const MissionSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
         delayChildren: 0.1
       }
     }
@@ -26,44 +26,36 @@ const MissionSection = () => {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   return (
-    <section className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50/40 pt-32 overflow-hidden" dir="rtl">
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl"></div>
+    <section className="relative py-20 pt-32 bg-white overflow-hidden" dir="rtl">
+      {/* Creative Background Pattern */}
+      <div className="absolute inset-0 z-0">
+        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hexagons" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <polygon points="20,1 38,10 38,30 20,39 2,30 2,10" fill="none" stroke="#e5e7eb" strokeWidth="0.5" opacity="0.3"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hexagons)" />
+        </svg>
+        <div className="absolute top-20 left-1/4 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-20"></div>
+        <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-blue-50 rounded-full blur-3xl opacity-20"></div>
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div 
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
-          className="text-center mb-20 space-y-6"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-l from-blue-600 to-blue-900 bg-clip-text text-transparent leading-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             رسالتنا للمرشحين
           </h2>
-          <p className="text-lg text-blue-700 font-bold">
-            حلول ذكية لحملتك الانتخابية
+          <div className="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
+          <p className="text-base text-gray-600">
+            حلول رقمية متقدمة لدعم حملتك الانتخابية بكفاءة واحترافية
           </p>
-          <div className="flex justify-center items-center gap-3">
-            <motion.div 
-              className="h-1.5 w-24 bg-gradient-to-r from-transparent to-blue-400 rounded-full"
-              animate={{ scaleX: [0, 1] }}
-              transition={{ duration: 1 }}
-            />
-            <motion.div 
-              className="h-1.5 w-40 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
-              animate={{ scaleX: [0, 1] }}
-              transition={{ duration: 1, delay: 0.2 }}
-            />
-            <motion.div 
-              className="h-1.5 w-24 bg-gradient-to-r from-blue-600 to-transparent rounded-full"
-              animate={{ scaleX: [0, 1] }}
-              transition={{ duration: 1, delay: 0.4 }}
-            />
-          </div>
         </motion.div>
 
         {/* Current Challenges Section */}
@@ -72,40 +64,30 @@ const MissionSection = () => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
-          className="grid md:grid-cols-2 gap-14 items-center mb-20"
+          className="grid lg:grid-cols-2 gap-12 items-center mb-20"
         >
-          <motion.div variants={fadeInUp} className="space-y-6">
-            <h3 className="text-2xl font-bold text-blue-900 flex items-center gap-2">
-              <motion.svg 
-                className="w-6 h-6 text-red-500" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-                animate={{ rotate: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-              </motion.svg>
+          <motion.div variants={fadeInUp} className="order-2 lg:order-1">
+            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <span className="text-red-500">✕</span>
               تحديات المرشح التقليدية
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {[
-                'صارف آلاف الدولارات على كارتات تنرمي بالشارع أو بالزبل',
-                'تشتري لافتات، وتنشك أول مطرة او يشكوها',
-                'تدفع للمراقب الانتخابي الواحد ١٠٠ دولار',
-                'عندك ناس تخابرك، تراسلك، تتفاعل وياك… وإنت ما تلحك تجاوب!',
-                'تظل تسأل نفسك: شكد عندي تأييد؟'
+                'إنفاق آلاف الدولارات على بطاقات انتخابية غالباً ما يتم التخلص منها في الشوارع أو النفايات.',
+                'شراء لافتات دعائية تتعرض للتلف مع أول هطول للأمطار أو عند تقديم شكوى ضدها.',
+                'دفع مبالغ كبيرة للمراقبين الانتخابيين تصل إلى 100 دولار للفرد الواحد.',
+                'تعدد وسائل التواصل مع الناخبين (اتصالات، رسائل، تفاعل مباشر) مع صعوبة الاستجابة لجميع الطلبات في الوقت المناسب.',
+                'الاستمرار في التساؤل حول حجم التأييد الفعلي والدعم الجماهيري.'
               ].map((challenge, index) => (
                 <motion.div 
                   key={index} 
                   variants={fadeInUp}
-                  whileHover={{ scale: 1.02, x: -5 }}
-                  className="flex items-start gap-4 bg-gradient-to-br from-red-50 to-orange-50 p-4 rounded-2xl border-r-4 border-red-300 shadow-md hover:shadow-lg transition-all"
+                  className="flex items-start gap-3 bg-gray-50 p-3 rounded-lg border-r-2 border-red-400"
                 >
-                  <svg className="w-6 h-6 text-red-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                  <svg className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  <p className="text-gray-700 font-normal text-base leading-relaxed">{challenge}</p>
+                  <p className="text-sm text-gray-700">{challenge}</p>
                 </motion.div>
               ))}
             </div>
@@ -113,17 +95,16 @@ const MissionSection = () => {
           
           <motion.div 
             variants={fadeInUp}
-            className="relative flex justify-center items-center"
+            className="relative order-1 lg:order-2"
           >
-            <motion.img
-              src={ourmissionimage}
-              alt="تحديات الحملة الانتخابية"
-              className="rounded-3xl shadow-2xl border-4 border-blue-100 max-w-md w-full"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            />
-            <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full blur-2xl opacity-60 -z-10"></div>
-            <div className="absolute -top-8 -left-8 w-32 h-32 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full blur-2xl opacity-60 -z-10"></div>
+            <div className="relative">
+              <img
+                src={ourmissionimage}
+                alt="تحديات الحملة الانتخابية"
+                className="rounded-2xl shadow-xl w-full max-w-md mx-auto"
+              />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-blue-600/20 to-transparent"></div>
+            </div>
           </motion.div>
         </motion.div>
 
@@ -133,129 +114,125 @@ const MissionSection = () => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="relative bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/80 backdrop-blur-sm rounded-3xl p-12 mb-24 shadow-2xl border border-blue-100"
+          className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 md:p-12 mb-20 border border-blue-100"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-3xl"></div>
-          <div className="relative">
-            <h3 className="text-2xl p-2 md:text-2xl font-bold bg-gradient-to-l from-blue-700 to-indigo-700 bg-clip-text text-transparent mb-12 text-center">
-              الحل من "صوتك أمانة" – منصة ذكية تصير حملتك كلها بموبايلك
-            </h3>
-            <motion.div 
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-              className="grid md:grid-cols-3 gap-10"
-            >
-              {[
-                {
-                  title: 'صفحة رسمية متكاملة',
-                  description: 'تربط كل حساباتك، وواجهة محترمة تنشر بكل المنصات دفعة وحدة',
-                  icon: '🌐'
-                },
-                {
-                  title: 'تواصل مباشر',
-                  description: 'رسائل شخصية، صوتية، ڤيديو، دردشة مباشرة، ومجموعات واتساب',
-                  icon: '💬'
-                },
-                {
-                  title: 'تحليلات دقيقة',
-                  description: 'معرفة عدد المؤيدين، أماكن تواجدهم، واحتياجاتهم',
-                  icon: '📊'
-                }
-              ].map((feature, index) => (
-                <motion.div 
-                  key={index} 
-                  variants={fadeInUp}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center text-center border border-gray-100"
-                >
-                  <motion.div 
-                    className="text-3xl mb-6"
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {feature.icon}
-                  </motion.div>
-                  <h4 className="text-xl font-bold text-blue-900 mb-4">{feature.title}</h4>
-                  <p className="text-gray-600 text-base leading-relaxed">{feature.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-10 text-center">
+            الحل مع "صوتك أمانة" – منصة رقمية متكاملة تُمكِّنك من إدارة حملتك الانتخابية بالكامل عبر هاتفك الذكي
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                title: 'صفحة رسمية متكاملة',
+                description: 'ربط جميع حساباتك الانتخابية وتقديم واجهة احترافية للنشر المتزامن عبر مختلف المنصات',
+                icon: '🌐'
+              },
+              {
+                title: 'تواصل مباشر',
+                description: 'توفير وسائل تواصل مباشرة ومتنوعة تشمل الرسائل النصية والصوتية والفيديو والدردشة الجماعية',
+                icon: '💬'
+              },
+              {
+                title: 'تحليلات دقيقة',
+                description: 'تحليلات دقيقة لعدد المؤيدين، أماكن تواجدهم، واحتياجاتهم الانتخابية',
+                icon: '📊'
+              }
+            ].map((feature, index) => (
+              <motion.div 
+                key={index} 
+                variants={fadeInUp}
+                whileHover={{ y: -5 }}
+                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-center"
+              >
+                <div className="text-3xl mb-4">{feature.icon}</div>
+                <h4 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h4>
+                <p className="text-sm text-gray-600">{feature.description}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
-        {/* Electronic Voting Timeline - Only 3 Phases, Modern Design */}
+        {/* Electronic Voting Timeline */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="space-y-16"
+          className="mb-20"
         >
-          <h3 className="text-2xl md:text-2xl font-bold text-blue-900 text-center mb-14">
-            <span className="inline-flex items-center gap-2 text-lg">
-              <motion.svg 
-                className="w-6 h-6 text-blue-600" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </motion.svg>
-              ٣ تصويتات إلكترونية حقيقية قبل الانتخابات
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-12">
+            <span className="inline-flex items-center gap-2">
+              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              ٣ تصويتات افتراضيه إلكترونية حقيقية قبل الانتخابات
             </span>
           </h3>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-0 relative">
+          
+          <div className="relative max-w-4xl mx-auto">
             {/* Timeline Line */}
-            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-2 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-200 rounded-full z-0" style={{transform: 'translateY(-50%)'}}></div>
-            {[
-              {
-                time: '٣ أسابيع قبل الانتخابات',
-                description: 'تشوف هل التأييد زاد لو قل',
-                icon: '📈'
-              },
-              {
-                time: 'أسبوع قبل الانتخابات',
-                description: 'تشوف شصار من حملتك',
-                icon: '📣'
-              },
-              {
-                time: 'يوم الانتخابات',
-                description: 'تگدر تعرف منو وصل لمركز الاقتراع وانتخبك',
-                icon: '✅'
-              }
-            ].map((phase, index) => (
-              <motion.div 
-                key={index} 
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                className="relative z-10 flex-1 flex flex-col items-center text-center"
-              >
-                <div className="flex flex-col items-center mb-6">
-                  <motion.div 
-                    className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white text-4xl shadow-2xl border-4 border-white mb-4"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
+            <div className="absolute top-12 left-0 right-0 h-0.5 bg-gray-200 hidden md:block"></div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  time: '٣ أسابيع قبل الانتخابات',
+                  description: 'تشوف هل التأييد زاد لو قل',
+                  icon: '📈',
+                  color: 'from-blue-500 to-blue-600'
+                },
+                {
+                  time: 'أسبوع قبل الانتخابات',
+                  description: 'تشوف شصار من حملتك',
+                  icon: '📣',
+                  color: 'from-blue-600 to-blue-700'
+                },
+                {
+                  time: 'يوم الانتخابات',
+                  description: 'تگدر تعرف منو وصل لمركز الاقتراع وانتخبك',
+                  icon: '✅',
+                  color: 'from-blue-700 to-blue-800'
+                }
+              ].map((phase, index) => (
+                <motion.div 
+                  key={index} 
+                  variants={fadeInUp}
+                  className="relative text-center"
+                >
+                  <div className={`w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br ${phase.color} flex items-center justify-center text-white text-3xl shadow-lg relative z-10`}>
                     {phase.icon}
-                  </motion.div>
-                  <h4 className="text-xl font-bold text-blue-900 mb-2">{phase.time}</h4>
-                  <p className="text-gray-600 text-base font-medium">{phase.description}</p>
-                </div>
-                {/* Connector for mobile */}
-                {index < 2 && (
-                  <motion.div 
-                    className="w-1 h-12 bg-gradient-to-b from-blue-300 to-blue-200 mx-auto md:hidden"
-                    initial={{ scaleY: 0 }}
-                    animate={{ scaleY: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
-                  />
-                )}
-              </motion.div>
-            ))}
+                  </div>
+                  <h4 className="text-base font-bold text-gray-900 mb-2">{phase.time}</h4>
+                  <p className="text-sm text-gray-600">{phase.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
+        </motion.div>
+
+        {/* Features Grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20"
+        >
+          {[
+            { icon: "🎯", title: "استهداف دقيق", desc: "وصول مباشر للناخبين المستهدفين" },
+            { icon: "💰", title: "توفير التكاليف", desc: "خفض 80% من تكاليف الحملة" },
+            { icon: "📱", title: "إدارة سهلة", desc: "كل شيء من هاتفك الذكي" },
+            { icon: "🔒", title: "أمان وخصوصية", desc: "حماية كاملة لبياناتك" }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              variants={fadeInUp}
+              className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-all border border-gray-100 text-center"
+            >
+              <div className="text-3xl mb-3">{item.icon}</div>
+              <h4 className="font-bold text-gray-900 mb-2">{item.title}</h4>
+              <p className="text-sm text-gray-600">{item.desc}</p>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Bottom CTA */}
@@ -264,66 +241,71 @@ const MissionSection = () => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          className="mt-24 text-center relative overflow-hidden"
+          className="text-center"
         >
-          <div className="relative bg-gradient-to-br from-blue-50/90 via-white to-indigo-50/90 backdrop-blur-sm rounded-3xl p-16 shadow-2xl border border-blue-100">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-12 text-white relative overflow-hidden">
             {/* Background pattern */}
-            <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0 opacity-10">
               <div className="absolute inset-0" style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234338ca' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px)`
               }}></div>
             </div>
             
-            <div className="relative">
-              <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-l from-blue-700 to-indigo-700 bg-clip-text text-transparent mb-8">
-                صوتك أمانة - مكتبك الانتخابي الرقمي المتكامل
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-4">
+                "صوتك أمانة" - مكتبك الانتخابي الرقمي المتكامل
               </h3>
-              <p className="text-gray-600 mb-10 max-w-3xl mx-auto text-base leading-relaxed font-normal">
-                مو بس تطبيق…هو عبارة عن مكتبك الانتخابي الرقمي، حملتك، واجهتك، جمهورك، وتحليلاتك – الكل بمكان واحد، تحت سيطرتك، وبدون تعب وباقل تكلفة!
+              <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-sm">
+                ليست مجرد تطبيق، بل هي منصة رقمية متكاملة تجمع بين إدارة الحملة، التواصل مع الجمهور، وتحليل البيانات في مكان واحد، لتمنحك سيطرة كاملة وفعالية عالية وبتكلفة أقل.
               </p>
               <motion.button 
-                className="group bg-gradient-to-l from-blue-600 to-indigo-600 text-white px-10 py-5 rounded-2xl hover:from-blue-700 hover:to-indigo-700 
-                         transition-all duration-300 transform hover:-translate-y-2 shadow-xl hover:shadow-2xl text-lg font-bold inline-flex items-center gap-3"
+                className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors duration-300 inline-flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowComingSoon(true)}
               >
                 ابدأ حملتك الذكية الآن
-                <motion.svg 
-                  className="w-6 h-6"
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                  animate={{ x: [0, -5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </motion.svg>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </motion.button>
             </div>
           </div>
         </motion.div>
+
+
         {/* Coming Soon Popup */}
         {showComingSoon && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-xs w-full text-center relative animate-fadeIn">
-              <div className="flex flex-col items-center gap-3 mb-4">
-                <svg className="w-16 h-16 text-blue-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" strokeWidth="2" className="text-blue-200" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01" />
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowComingSoon(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4 text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h2 className="text-2xl font-bold text-blue-700">قريباً</h2>
-                <p className="text-gray-600 text-base">ميزة إطلاق الحملة الذكية ستكون متاحة قريباً.<br/>تابعنا لمزيد من التحديثات!</p>
               </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">قريباً</h3>
+              <p className="text-gray-600 mb-6 text-sm">
+                ميزة إطلاق الحملة الذكية ستكون متاحة قريباً.
+                <br />تابعنا لمزيد من التحديثات!
+              </p>
               <button
                 onClick={() => setShowComingSoon(false)}
-                className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-all"
-                autoFocus
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
               >
-                إغلاق
+                حسناً
               </button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
       </div>
     </section>

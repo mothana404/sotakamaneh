@@ -163,7 +163,7 @@ const CandidateDetailsPage = () => {
 
   const fullName = `${candidate.user.first_name} ${candidate.user.last_name}`;
   const profileImage = candidate.profile_image || "https://www.elections.ab.ca/uploads/Candidate.png";
-  const bannerImage = candidate.profile_banner_image || "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200";
+  const bannerImage = candidate.profile_banner_image || "https://s.france24.com/media/display/11726090-999d-11ee-ae25-005056bf30b7/w:1280/p:16x9/000_32MA8JL%20%281%29.jpg";
 
   return (
     <>
@@ -257,7 +257,7 @@ const CandidateDetailsPage = () => {
                     <Icon icon="mdi:account" className="text-blue-600" />
                     نبذة شخصية
                   </h2>
-                  <p className="text-gray-700 leading-relaxed">{candidate.biography}</p>
+                  <p className="text-gray-700 leading-relaxed break-words">{candidate.biography}</p>
                 </motion.div>
               )}
 
@@ -270,7 +270,7 @@ const CandidateDetailsPage = () => {
                   className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 text-white text-center"
                 >
                   <Icon icon="mdi:format-quote-open" className="text-3xl mb-2" />
-                  <p className="text-xl font-medium italic">{candidate.campaign_slogan}</p>
+                  <p className="text-xl font-medium italic break-words">{candidate.campaign_slogan}</p>
                   <Icon icon="mdi:format-quote-close" className="text-3xl mt-2" />
                 </motion.div>
               )}
@@ -304,7 +304,7 @@ const CandidateDetailsPage = () => {
                       <Icon icon="mdi:briefcase" className="text-blue-600" />
                       الخبرة المهنية
                     </h3>
-                    <p className="text-gray-700 text-sm leading-relaxed">{candidate.experience}</p>
+                    <p className="text-gray-700 break-words text-sm leading-relaxed">{candidate.experience}</p>
                   </motion.div>
                 )}
 
@@ -319,7 +319,7 @@ const CandidateDetailsPage = () => {
                       <Icon icon="mdi:trophy" className="text-blue-600" />
                       الإنجازات
                     </h3>
-                    <p className="text-gray-700 text-sm leading-relaxed">{candidate.achievements}</p>
+                    <p className="text-gray-700 text-sm leading-relaxed break-words">{candidate.achievements}</p>
                   </motion.div>
                 )}
               </div>
@@ -332,10 +332,10 @@ const CandidateDetailsPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-xl p-6 shadow-sm"
+                className="bg-white rounded-xl p-6 shadow-sm break-words"
               >
                 <h3 className="text-lg font-bold text-blue-900 mb-4">معلومات سريعة</h3>
-                <div className="space-y-3">
+                <div className="space-y-3 break-words">
                   <InfoItem 
                     icon="mdi:badge-account" 
                     label="المنصب الحالي" 
@@ -369,7 +369,7 @@ const CandidateDetailsPage = () => {
                 >
                   <h3 className="text-lg font-bold text-blue-900 mb-4">المهارات</h3>
                   <div className="flex flex-wrap gap-2">
-                    {candidate.skills.split('،').map((skill, idx) => (
+                    {candidate.skills.split(',').map((skill, idx) => (
                       <span 
                         key={idx}
                         className="bg-white text-blue-700 px-3 py-1 rounded-full text-sm font-medium"
@@ -382,7 +382,7 @@ const CandidateDetailsPage = () => {
               )}
 
               {/* Social Links */}
-              {candidate.facebook_link && (
+              {(candidate.facebook_link || candidate.linkedin_link || candidate.instagram_link || candidate.twitter_link || candidate.youtube_link || candidate.tiktok_link || candidate.website_link) && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -390,15 +390,85 @@ const CandidateDetailsPage = () => {
                   className="bg-white rounded-xl p-6 shadow-sm"
                 >
                   <h3 className="text-lg font-bold text-blue-900 mb-4">التواصل الاجتماعي</h3>
-                  <a
-                    href={candidate.facebook_link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
-                  >
-                    <Icon icon="logos:facebook" className="text-2xl" />
-                    <span className="text-blue-700 font-medium">Facebook</span>
-                  </a>
+                  <div className="flex flex-col gap-2">
+                    {candidate.facebook_link && (
+                      <a
+                        href={candidate.facebook_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                      >
+                        <Icon icon="logos:facebook" className="text-2xl" />
+                        <span className="text-blue-700 font-medium">Facebook</span>
+                      </a>
+                    )}
+                    {candidate.linkedin_link && (
+                      <a
+                        href={candidate.linkedin_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                      >
+                        <Icon icon="logos:linkedin-icon" className="text-2xl" />
+                        <span className="text-blue-700 font-medium">LinkedIn</span>
+                      </a>
+                    )}
+                    {candidate.instagram_link && (
+                      <a
+                        href={candidate.instagram_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                      >
+                        <Icon icon="skill-icons:instagram" className="text-2xl" />
+                        <span className="text-blue-700 font-medium">Instagram</span>
+                      </a>
+                    )}
+                    {candidate.twitter_link && (
+                      <a
+                        href={candidate.twitter_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                      >
+                        <Icon icon="simple-icons:x" className="text-2xl" />
+                        <span className="text-blue-700 font-medium">X</span>
+                      </a>
+                    )}
+                    {candidate.youtube_link && (
+                      <a
+                        href={candidate.youtube_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                      >
+                        <Icon icon="logos:youtube-icon" className="text-2xl" />
+                        <span className="text-blue-700 font-medium">YouTube</span>
+                      </a>
+                    )}
+                    {candidate.tiktok_link && (
+                      <a
+                        href={candidate.tiktok_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                      >
+                        <Icon icon="ic:baseline-tiktok" className="text-2xl" />
+                        <span className="text-blue-700 font-medium">TikTok</span>
+                      </a>
+                    )}
+                    {candidate.website_link && (
+                      <a
+                        href={candidate.website_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                      >
+                        <Icon icon="mdi:web" className="text-2xl" />
+                        <span className="text-blue-700 font-medium">الموقع الإلكتروني</span>
+                      </a>
+                    )}
+                  </div>
                 </motion.div>
               )}
             </div>
@@ -416,7 +486,7 @@ const CandidateDetailsPage = () => {
                 <Icon icon="mdi:information" className="text-blue-600" />
                 معلومات إضافية
               </h3>
-              <p className="text-gray-700 leading-relaxed">{candidate.additional_info}</p>
+              <p className="text-gray-700 break-words leading-relaxed">{candidate.additional_info}</p>
             </motion.div>
           )}
         </div>
@@ -439,79 +509,73 @@ const InfoItem = ({ icon, label, value }) => (
 // Share Card Component - Enhanced for better image loading
 const ShareCard = ({ candidate, fullName, profileImage }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  
-  // Preload image
+
   useEffect(() => {
-    const img = new Image();
+    const img = new window.Image();
     img.crossOrigin = "anonymous";
     img.onload = () => setImageLoaded(true);
     img.onerror = () => setImageLoaded(true);
     img.src = profileImage;
   }, [profileImage]);
-  
+
   return (
-    <div 
-      className="w-[400px] h-[500px] bg-white rounded-2xl shadow-2xl overflow-hidden"
-      dir="rtl"
-    >
-      {/* Header */}
-      <div className="h-40 bg-gradient-to-br from-blue-600 to-blue-800 relative">
-        {/* Pattern background - simplified */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="h-full w-full" style={{
-            backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px)`
-          }} />
+    <div className="w-[400px] h-[600px] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col relative" dir="rtl">
+      {/* Top Bar */}
+      <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-r from-blue-700 to-blue-900 flex items-center justify-between px-6 z-10">
+        <div className="text-white">
+          <p className="text-xs">الانتخابات النيابية</p>
+          <p className="text-xl font-bold">2025</p>
         </div>
-        
-        {/* Logo/Title */}
-        <div className="absolute top-4 right-4 text-white">
-          <h3 className="text-lg font-bold">انتخابات 2025</h3>
-          <p className="text-sm opacity-90">صوتك أمانة</p>
+        <div className="bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md">
+          <span className="text-blue-800 font-bold text-xl mb-5">{candidate.constituency_id}</span>
         </div>
       </div>
   
       {/* Profile Image */}
-      <div className="relative -mt-20 flex justify-center align-middle">
-        <div className="relative">
-          <div className="w-44 h-44 rounded-full border-4 border-white shadow-xl overflow-hidden bg-gray-100">
-            {imageLoaded ? (
-              <img
-                src={profileImage}
-                alt={fullName}
-                className="w-full h-full object-fill"
-                crossOrigin="anonymous"
-              />
-            ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                <Icon icon="mdi:account" className="text-5xl text-gray-400" />
-              </div>
-            )}
-          </div>
-          <div className="absolute pb-4 -bottom-2 -right-2 bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-base shadow-lg">
-            {candidate.constituency_id}
-          </div>
+      <div className="flex flex-col items-center justify-center mt-24 relative z-20">
+        <div className="w-48 h-48 rounded-full border-4 border-white shadow-xl overflow-hidden bg-gray-100 -mt-16">
+          {imageLoaded ? (
+            <img
+              src={profileImage}
+              alt={fullName}
+              className="w-full h-full object-cover"
+              crossOrigin="anonymous"
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+              <Icon icon="mdi:account" className="text-7xl text-gray-400" />
+            </div>
+          )}
         </div>
-      </div>
-  
-      {/* Content */}
-      <div className="text-center px-6 py-3">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">{fullName}</h2>
-        <p className="text-blue-600 font-medium mb-3">{candidate.party_bloc_name || "مستقل"}</p>
-        
-        <div className="bg-gray-50 rounded-lg p-3 mb-3">
-          <p className="text-sm text-gray-600 mb-1">الدائرة الانتخابية</p>
-          <p className="font-bold text-gray-800">{candidate.constituency?.name}</p>
-        </div>
-  
-        {candidate.campaign_slogan && (
-          <div className="bg-blue-50 rounded-lg p-3">
-            <p className="text-sm text-blue-900 italic">"{candidate.campaign_slogan}"</p>
+        {/* Party Badge */}
+        {candidate.party_bloc_name && (
+          <div className="absolute pb-5 -bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-1 rounded-3xl text-lg font-semibold shadow-lg border-2 border-white">
+            {candidate.party_bloc_name}
           </div>
         )}
       </div>
   
-      {/* Footer */}
-      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-blue-600 to-transparent opacity-10" />
+      {/* Info Section */}
+      <div className="flex-1 flex flex-col justify-center items-center px-8 pt-8 pb-6">
+        {/* Name */}
+        <h2 className="text-2xl font-bold text-center text-blue-900 mb-4">
+          {fullName}
+        </h2>
+        {/* Constituency */}
+        <div className="bg-blue-50 rounded-lg p-4 mb-4 w-full text-center shadow-md border-blue-200">
+          <p className="text-sm text-blue-600 mb-2">الدائرة الانتخابية</p>
+          <p className="text-lg font-bold text-blue-900">{candidate.constituency?.name}</p>
+        </div>
+        {/* Slogan */}
+        {candidate.campaign_slogan && (
+          <div className="w-full text-center mt-3">
+            <p className="text-lg text-gray-600 italic">"{candidate.campaign_slogan}"</p>
+          </div>
+        )}
+      </div>
+  
+      {/* Bottom Border */}
+      <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-r from-blue-700 to-blue-900" />
     </div>
   );
 };

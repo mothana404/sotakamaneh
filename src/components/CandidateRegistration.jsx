@@ -214,242 +214,398 @@ const CandidateRegistration = () => {
   return (
     <>
     <Navbar />
-    <div className="min-h-screen relative overflow-hidden pt-20" dir="rtl">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/30 to-white/60"></div>
+    <div className="min-h-screen relative overflow-hidden pt-20 bg-white" dir="rtl">
+      {/* Creative Background */}
+      <div className="absolute inset-0">
+        {/* Gradient Mesh Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-sky-50">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/20 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-sky-100/20 via-transparent to-transparent"></div>
+        </div>
         
-        {/* Animated shapes */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-        <div className="absolute bottom-0 right-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-6000"></div>
+        {/* Floating Elements */}
+        <div className="absolute top-20 right-10 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+        <div className="absolute top-40 left-20 w-96 h-96 bg-sky-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float animation-delay-2000"></div>
+        <div className="absolute bottom-20 right-1/3 w-80 h-80 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float animation-delay-4000"></div>
         
-        {/* Floating geometric shapes */}
-        <div className="absolute top-1/4 left-1/4 w-16 h-16 border-2 border-blue-200 rotate-45 animate-float"></div>
-        <div className="absolute top-3/4 right-1/4 w-20 h-20 border-2 border-purple-200 rounded-full animate-float animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-12 h-12 bg-indigo-100 rotate-12 animate-float animation-delay-4000"></div>
+        {/* Geometric Patterns */}
+        <svg className="absolute top-10 left-1/4 w-24 h-24 text-blue-100 opacity-30" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 4" />
+          <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 4" />
+          <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 4" />
+        </svg>
         
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <svg className="absolute bottom-32 right-1/4 w-32 h-32 text-sky-100 opacity-30" viewBox="0 0 100 100">
+          <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="0.5" transform="rotate(45 50 50)" />
+          <rect x="30" y="30" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="0.5" transform="rotate(45 50 50)" />
+        </svg>
+        
+        {/* Dots Pattern */}
+        <div className="absolute inset-0 opacity-[0.015]" style={{
+          backgroundImage: `radial-gradient(circle, #3b82f6 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
 
       {/* Main Content */}
       <div className="relative z-10 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto" style={{overflowWrap: 'break-word', wordBreak: 'break-word'}}>
-          <div className="bg-white/95 backdrop-blur-sm shadow-2xl rounded-2xl p-8 border border-white/50">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white/90 backdrop-blur-lg shadow-xl rounded-3xl border border-blue-100 overflow-hidden">
             {/* Header Section */}
-            <div className="mb-8 text-center">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-12 text-white text-center">
+              <h1 className="text-2xl md:text-3xl font-bold mb-3">
                 التسجيل المسبق للمرشحين
               </h1>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                سجل بياناتك الآن لتكون حسابك جاهزاً في التطبيق المخصص للانتخابات البرلمانية العراقية
+              <p className="text-blue-100 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+                سجل بياناتك الآن ليكون حسابك جاهزاً في التطبيق المخصص للانتخابات البرلمانية العراقية
                 الذي سيتم إطلاقه قريباً. املأ النموذج أدناه لحجز مكانك وضمان وصولك السريع لناخبيك.
               </p>
             </div>
 
             {/* Form Section */}
-            <form onSubmit={handleSubmit} className="space-y-6" encType="multipart/form-data">
-              {/* First Name */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">الأسم الكامل *</label>
-                <input type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل الاسم الكامل" />
-                {errors.first_name && <div className="text-red-500 text-sm mt-1 break-words">{errors.first_name}</div>}
-              </div>
-              {/* Last Name */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2"> اللقب *</label>
-                <input type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل اللقب " />
-                {errors.last_name && <div className="text-red-500 text-sm mt-1 break-words">{errors.last_name}</div>}
-              </div>
-              {/* Email */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني *</label>
-                <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل البريد الإلكتروني" />
-                {errors.email && <div className="text-red-500 text-sm mt-1 break-words">{errors.email}</div>}
+            <form onSubmit={handleSubmit} className="p-8 space-y-6" encType="multipart/form-data">
+              {/* Personal Information Section */}
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold">1</span>
+                  المعلومات الشخصية
+                </h2>
+                
+                {/* First Name & Last Name in same row */}
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">الأسم الكامل *</label>
+                    <input type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} required className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل الاسم الكامل" />
+                    {errors.first_name && <div className="text-red-500 text-xs mt-1">{errors.first_name}</div>}
+                  </div>
+                  
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">اللقب *</label>
+                    <input type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} required className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل اللقب" />
+                    {errors.last_name && <div className="text-red-500 text-xs mt-1">{errors.last_name}</div>}
+                  </div>
+                </div>
+
+                {/* Email & Phone in same row */}
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="group">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني *</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل البريد الإلكتروني" />
+                    {errors.email && <div className="text-red-500 text-xs mt-1">{errors.email}</div>}
+                  </div>
+                  
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف *</label>
+                    <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل رقم الهاتف" />
+                    {errors.phone && <div className="text-red-500 text-xs mt-1">{errors.phone}</div>}
+                  </div>
+                </div>
+
+                {/* Biography */}
+                <div className="group">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">السيرة الذاتية *</label>
+                  <textarea name="biography" value={formData.biography} onChange={handleInputChange} required rows={4} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" placeholder="أدخل السيرة الذاتية" maxLength={1000} />
+                  {errors.biography && <div className="text-red-500 text-xs mt-1">{errors.biography}</div>}
+                  <div className="text-xs text-gray-500 mt-1 text-left">{formData.biography.length}/1000</div>
+                </div>
               </div>
 
-              {/* Constituency ID */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2"> التسلسل*</label>
-                <input type="number" name="constituency_id" value={formData.constituency_id} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل الرقم" />
-                {errors.constituency_id && <div className="text-red-500 text-sm mt-1 break-words">{errors.constituency_id}</div>}
-              </div>
-              {/* Party Bloc Name */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">اسم الحزب أو الكتلة *</label>
-                <input type="text" name="party_bloc_name" value={formData.party_bloc_name} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل اسم الحزب أو الكتلة" />
-                {errors.party_bloc_name && <div className="text-red-500 text-sm mt-1 break-words">{errors.party_bloc_name}</div>}
-              </div>
-              {/* Phone */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف *</label>
-                <input type="text" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل رقم الهاتف" />
-                {errors.phone && <div className="text-red-500 text-sm mt-1 break-words">{errors.phone}</div>}
-              </div>
-              {/* Biography */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">السيرة الذاتية *</label>
-                <textarea name="biography" value={formData.biography} onChange={handleInputChange} required rows={4} className="w-full px-4 py-2 border border-gray-300 rounded-lg break-words" placeholder="أدخل السيرة الذاتية" maxLength={1000} />
-                {errors.biography && <div className="text-red-500 text-sm mt-1 break-words">{errors.biography}</div>}
-              </div>
-              {/* List Number (اختياري) */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">المحافظة</label>
-                {listLoading ? (
-                  <div className="text-blue-600 text-sm">جاري تحميل القوائم...</div>
-                ) : listError ? (
-                  <>
-                    <input type="text" name="list_number" value={formData.list_number} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="اختر المحافظة" />
-                    <div className="text-red-500 text-xs mt-1">{listError}</div>
-                  </>
-                ) : listOptions.length > 0 ? (
-                  <div className="relative">
-                    <select
-                      name="list_number"
-                      value={formData.list_number}
-                      onChange={handleInputChange}
-                      className="w-full appearance-none px-5 py-3 pr-12 border border-indigo-300 rounded-xl shadow-sm bg-white text-gray-900 text-base font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-500 transition-all duration-150 hover:border-indigo-400 cursor-pointer"
-                      required
-                    >
-                      <option value="">اختر  المحافظة </option>
-                      {listOptions.map(option => (
-                        <option key={option.id} value={option.list_number || option.id} className="text-gray-900">
-                          {option.list_number ? `قائمة ${option.list_number} - ${option.name}` : option.name}
-                        </option>
-                      ))}
-                    </select>
-                    {/* Chevron Icon */}
-                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3 text-indigo-400">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
+              {/* Political Information Section */}
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold">2</span>
+                  المعلومات السياسية
+                </h2>
+
+                {/* Constituency ID & Party in same row */}
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">التسلسل *</label>
+                    <input type="number" name="constituency_id" value={formData.constituency_id} onChange={handleInputChange} required className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل الرقم" />
+                    {errors.constituency_id && <div className="text-red-500 text-xs mt-1">{errors.constituency_id}</div>}
                   </div>
-                ) : (
-                  <input type="text" name="list_number" value={formData.list_number} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل رقم القائمة أو الكتلة" />
-                )}
-              </div>
-              {/* Current Position (اختياري) */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">المنصب الحالي أو السابق أو العشائري (اختياري)</label>
-                <input type="text" name="current_position" value={formData.current_position} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل المنصب الحالي أو السابق أو العشائري" />
-              </div>
-              {/* Achievements (اختياري) */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">إنجازات المرشح (اختياري)</label>
-                <textarea name="achievements" value={formData.achievements} onChange={handleInputChange} rows={3} className="w-full px-4 py-2 border border-gray-300 rounded-lg break-words" placeholder="اذكر أهم إنجازاتك السابقة" maxLength={1000} />
-                {errors.achievements && <div className="text-red-500 text-sm mt-1 break-words">{errors.achievements}</div>}
-              </div>
-              {/* Additional Info (اختياري) */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">معلومات إضافية (اختياري)</label>
-                <textarea name="additional_info" value={formData.additional_info} onChange={handleInputChange} rows={2} className="w-full px-4 py-2 border border-gray-300 rounded-lg break-words" placeholder="أدخل أي معلومات إضافية" maxLength={1000} />
-                {errors.additional_info && <div className="text-red-500 text-sm mt-1 break-words">{errors.additional_info}</div>}
-              </div>
-              {/* Experience (اختياري) */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">الخبرة العملية (اختياري)</label>
-                <textarea name="experience" value={formData.experience} onChange={handleInputChange} rows={2} className="w-full px-4 py-2 border border-gray-300 rounded-lg break-words" placeholder="أدخل خبراتك العملية" maxLength={1000} />
-                {errors.experience && <div className="text-red-500 text-sm mt-1 break-words">{errors.experience}</div>}
+                  
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">اسم الحزب أو الكتلة *</label>
+                    <input type="text" name="party_bloc_name" value={formData.party_bloc_name} onChange={handleInputChange} required className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل اسم الحزب أو الكتلة" />
+                    {errors.party_bloc_name && <div className="text-red-500 text-xs mt-1">{errors.party_bloc_name}</div>}
+                  </div>
                 </div>
-              {/* Skills (اختياري) */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">المهارات (اختياري)</label>
-                <textarea name="skills" value={formData.skills} onChange={handleInputChange} rows={2} className="w-full px-4 py-2 border border-gray-300 rounded-lg break-words" placeholder="أدخل مهاراتك" maxLength={1000} />
-                {errors.skills && <div className="text-red-500 text-sm mt-1 break-words">{errors.skills}</div>}
-                  </div>
-              {/* Campaign Slogan (اختياري) */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">شعار الحملة الانتخابية (اختياري)</label>
-                <input type="text" name="campaign_slogan" value={formData.campaign_slogan} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="أدخل شعار الحملة الانتخابية" />
-                    </div>
-              {/* Voter Promises (اختياري) */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">ماذا ستقدم للناخبين (اختياري)</label>
-                <textarea name="voter_promises" value={formData.voter_promises} onChange={handleInputChange} rows={2} className="w-full px-4 py-2 border border-gray-300 rounded-lg break-words" placeholder="اذكر وعودك للناخبين" maxLength={1000} />
-                {errors.voter_promises && <div className="text-red-500 text-sm mt-1 break-words">{errors.voter_promises}</div>}
+
+                {/* List Number & Current Position in same row */}
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">المحافظة</label>
+                    {listLoading ? (
+                      <div className="text-blue-600 text-sm">جاري تحميل القوائم...</div>
+                    ) : listError ? (
+                      <>
+                        <input type="text" name="list_number" value={formData.list_number} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="اختر المحافظة" />
+                        <div className="text-red-500 text-xs mt-1">{listError}</div>
+                      </>
+                    ) : listOptions.length > 0 ? (
+                      <div className="relative">
+                        <select
+                          name="list_number"
+                          value={formData.list_number}
+                          onChange={handleInputChange}
+                          className="w-full appearance-none px-4 py-2.5 pr-10 border border-gray-200 rounded-lg bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                          required
+                        >
+                          <option value="">اختر المحافظة</option>
+                          {listOptions.map(option => (
+                            <option key={option.id} value={option.list_number || option.id} className="text-gray-900">
+                              {option.list_number ? `قائمة ${option.list_number} - ${option.name}` : option.name}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-3 text-gray-400">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
                       </div>
-              {/* Profile Image */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">صورة الملف الشخصي (اختياري)</label>
-                <input type="file" accept="image/*" onChange={e => handleFileChange(e, 'profile')} required />
+                    ) : (
+                      <input type="text" name="list_number" value={formData.list_number} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل رقم القائمة أو الكتلة" />
+                    )}
                   </div>
-              {/* Profile Banner Image */}
-              <div className="group">
-                <label className="block text-sm font-medium text-gray-700 mb-2">صورة الغلاف (اختياري)</label>
-                <input type="file" accept="image/*" onChange={e => handleFileChange(e, 'banner')}  />
+                  
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">المنصب الحالي أو السابق (اختياري)</label>
+                    <input type="text" name="current_position" value={formData.current_position} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل المنصب" />
+                  </div>
                 </div>
-              {/* Social Media Links (Optional) */}
-              <div className="grid grid-cols-2 gap-4">
-                <input type="text" name="facebook_link" value={formData.facebook_link} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="رابط فيسبوك (اختياري)" />
-                <input type="text" name="linkedin_link" value={formData.linkedin_link} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="رابط لينكدإن (اختياري)" />
-                <input type="text" name="instagram_link" value={formData.instagram_link} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="رابط إنستغرام (اختياري)" />
-                <input type="text" name="twitter_link" value={formData.twitter_link} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="رابط تويتر (اختياري)" />
-                <input type="text" name="youtube_link" value={formData.youtube_link} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="رابط يوتيوب (اختياري)" />
-                <input type="text" name="tiktok_link" value={formData.tiktok_link} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="رابط تيك توك (اختياري)" />
-                <input type="text" name="website_link" value={formData.website_link} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="رابط الموقع الإلكتروني (اختياري)" />
+
+                {/* Campaign Slogan */}
+                <div className="group">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">شعار الحملة الانتخابية (اختياري)</label>
+                  <input type="text" name="campaign_slogan" value={formData.campaign_slogan} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="أدخل شعار الحملة" />
+                </div>
+              </div>
+
+              {/* Experience & Achievements Section */}
+              <div className="bg-gray-50 rounded-xl p-6">
+              <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold">3</span>
+                  الخبرات والإنجازات
+                </h2>
+
+                {/* Achievements */}
+                <div className="group mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">إنجازات المرشح (اختياري)</label>
+                  <textarea name="achievements" value={formData.achievements} onChange={handleInputChange} rows={3} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" placeholder="اذكر أهم إنجازاتك السابقة" maxLength={1000} />
+                  {errors.achievements && <div className="text-red-500 text-xs mt-1">{errors.achievements}</div>}
+                  <div className="text-xs text-gray-500 mt-1 text-left">{formData.achievements.length}/1000</div>
+                </div>
+
+                {/* Experience & Skills in same row */}
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">الخبرة العملية (اختياري)</label>
+                    <textarea name="experience" value={formData.experience} onChange={handleInputChange} rows={3} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" placeholder="أدخل خبراتك العملية" maxLength={1000} />
+                    {errors.experience && <div className="text-red-500 text-xs mt-1">{errors.experience}</div>}
                   </div>
-              {/* Education Array */}
-              <div className="mt-6">
-                <label className="block text-lg font-bold text-gray-700 mb-2">المؤهلات العلمية</label>
+                  
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">المهارات (اختياري)</label>
+                    <textarea name="skills" value={formData.skills} onChange={handleInputChange} rows={3} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" placeholder="أدخل مهاراتك" maxLength={1000} />
+                    {errors.skills && <div className="text-red-500 text-xs mt-1">{errors.skills}</div>}
+                  </div>
+                </div>
+
+                {/* Voter Promises & Additional Info */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">ماذا ستقدم للناخبين (اختياري)</label>
+                    <textarea name="voter_promises" value={formData.voter_promises} onChange={handleInputChange} rows={3} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" placeholder="اذكر وعودك للناخبين" maxLength={1000} />
+                    {errors.voter_promises && <div className="text-red-500 text-xs mt-1">{errors.voter_promises}</div>}
+                  </div>
+                  
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">معلومات إضافية (اختياري)</label>
+                    <textarea name="additional_info" value={formData.additional_info} onChange={handleInputChange} rows={3} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" placeholder="أدخل أي معلومات إضافية" maxLength={1000} />
+                    {errors.additional_info && <div className="text-red-500 text-xs mt-1">{errors.additional_info}</div>}
+                  </div>
+                </div>
+              </div>
+
+              {/* Education Section */}
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold">4</span>
+                  المؤهلات العلمية
+                </h2>
+                
                 {education.map((ed, idx) => (
-                  <div key={idx} className="mb-4 border p-4 rounded-lg bg-gray-50">
-                    <div className="grid grid-cols-2 gap-4 mb-2">
-                      <input type="text" name="degree" value={ed.degree} onChange={e => handleEducationChange(idx, e)} className="px-2 py-1 border rounded" placeholder="الدرجة العلمية" required={idx === 0} />
-                      <input type="text" name="institution" value={ed.institution} onChange={e => handleEducationChange(idx, e)} className="px-2 py-1 border rounded" placeholder="المؤسسة التعليمية" required={idx === 0} />
-                      <input type="text" name="field_of_study" value={ed.field_of_study} onChange={e => handleEducationChange(idx, e)} className="px-2 py-1 border rounded" placeholder="مجال الدراسة (اختياري)" />
-                      <input type="number" name="start_year" value={ed.start_year} onChange={e => handleEducationChange(idx, e)} className="px-2 py-1 border rounded" placeholder="سنة البدء (اختياري)" />
-                      <input type="number" name="end_year" value={ed.end_year} onChange={e => handleEducationChange(idx, e)} className="px-2 py-1 border rounded" placeholder="سنة التخرج (اختياري)" />
-                      <input type="text" name="description" value={ed.description} onChange={e => handleEducationChange(idx, e)} className="px-2 py-1 border rounded" placeholder="وصف إضافي (اختياري)" />
+                  <div key={idx} className="mb-4 bg-white border border-gray-200 rounded-lg p-4">
+                    <div className="grid md:grid-cols-2 gap-3 mb-3">
+                      <input type="text" name="degree" value={ed.degree} onChange={e => handleEducationChange(idx, e)} className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="الدرجة العلمية" required={idx === 0} />
+                      <input type="text" name="institution" value={ed.institution} onChange={e => handleEducationChange(idx, e)} className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="المؤسسة التعليمية" required={idx === 0} />
+                      <input type="text" name="field_of_study" value={ed.field_of_study} onChange={e => handleEducationChange(idx, e)} className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="مجال الدراسة (اختياري)" />
+                      <div className="grid grid-cols-2 gap-2">
+                        <input type="number" name="start_year" value={ed.start_year} onChange={e => handleEducationChange(idx, e)} className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="سنة البدء" />
+                        <input type="number" name="end_year" value={ed.end_year} onChange={e => handleEducationChange(idx, e)} className="px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="سنة التخرج" />
+                      </div>
                     </div>
-                    {errors[`education_${idx}`] && <div className="text-red-500 text-sm mt-1 break-words">{errors[`education_${idx}`]}</div>}
+                    <input type="text" name="description" value={ed.description} onChange={e => handleEducationChange(idx, e)} className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="وصف إضافي (اختياري)" />
+                    {errors[`education_${idx}`] && <div className="text-red-500 text-xs mt-1">{errors[`education_${idx}`]}</div>}
                     {education.length > 1 && (
-                      <button type="button" onClick={() => removeEducation(idx)} className="text-red-500 hover:text-red-700">حذف المؤهل</button>
+                      <button type="button" onClick={() => removeEducation(idx)} className="mt-2 text-red-600 hover:text-red-700 text-sm font-medium">حذف المؤهل</button>
                     )}
                   </div>
                 ))}
-                <button type="button" onClick={addEducation} className="px-4 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200">إضافة مؤهل علمي آخر</button>
+                <button type="button" onClick={addEducation} className="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors text-sm font-medium">
+                  + إضافة مؤهل علمي آخر
+                </button>
               </div>
+
+              {/* Media Section */}
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold">5</span>
+                  الوسائط والروابط
+                </h2>
+
+                {/* Profile Images */}
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">صورة الملف الشخصي (اختياري)</label>
+                    <div className="relative">
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={e => handleFileChange(e, 'profile')} 
+                        className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="group">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">صورة الغلاف (اختياري)</label>
+                    <div className="relative">
+                      <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={e => handleFileChange(e, 'banner')} 
+                        className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social Media Links */}
+                <div className="space-y-3">
+                  <p className="text-sm font-medium text-gray-700 mb-3">روابط التواصل الاجتماعي (اختياري)</p>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    <input type="text" name="facebook_link" value={formData.facebook_link} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="رابط فيسبوك" />
+                    <input type="text" name="twitter_link" value={formData.twitter_link} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="رابط تويتر" />
+                    <input type="text" name="instagram_link" value={formData.instagram_link} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="رابط إنستغرام" />
+                    <input type="text" name="linkedin_link" value={formData.linkedin_link} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="رابط لينكدإن" />
+                    <input type="text" name="youtube_link" value={formData.youtube_link} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="رابط يوتيوب" />
+                    <input type="text" name="tiktok_link" value={formData.tiktok_link} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm" placeholder="رابط تيك توك" />
+                    <input type="text" name="website_link" value={formData.website_link} onChange={handleInputChange} className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm col-span-2" placeholder="رابط الموقع الإلكتروني" />
+                  </div>
+                </div>
+              </div>
+
               {/* Submit Button */}
               <div className="pt-6">
-                <button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-6 rounded-lg text-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                  {submitting ? 'جاري الإرسال...' : 'اضغط هنا لحفظ البيانات '}
+                <button 
+                  type="submit" 
+                  disabled={submitting} 
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-lg text-base font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {submitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                      </svg>
+                      جاري الإرسال...
+                    </span>
+                  ) : 'اضغط هنا لحفظ البيانات'}
                 </button>
               </div>
             </form>
-            {/* Popup for response */}
-            {popup.show && (
-              <div className={`fixed inset-0 flex items-center justify-center z-50 bg-black/40`}> 
-                <div className={`bg-white rounded-xl shadow-2xl p-8 max-w-md w-full text-center ${popup.success ? 'border-green-400' : 'border-red-400'} border-2`}>
-                  <h2 className={`text-2xl font-bold mb-4 ${popup.success ? 'text-green-600' : 'text-red-600'}`}>{popup.success ? 'نجاح' : 'خطأ'}</h2>
-                  <p className="mb-6 text-gray-700">{popup.message}</p>
-                  <button onClick={() => {
-                    setPopup({ ...popup, show: false });
-                    if (popup.success) {
-                      navigate('/');
-                    }
-                  }} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">إغلاق</button>
-                </div>
-              </div>
-            )}
-            {/* Loading Overlay */}
-            {submitting && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-                <div className="bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center">
-                  <svg className="animate-spin h-10 w-10 text-blue-600 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
-                  </svg>
-                  <div className="text-blue-600 font-bold text-lg">جاري إرسال البيانات...</div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
+
+      {/* Popup for response */}
+      {popup.show && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm p-4"> 
+          <div className={`bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center transform transition-all ${popup.success ? 'border-t-4 border-green-500' : 'border-t-4 border-red-500'}`}>
+            <div className={`w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center ${popup.success ? 'bg-green-100' : 'bg-red-100'}`}>
+              {popup.success ? (
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              ) : (
+                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              )}
+            </div>
+            <h2 className={`text-xl font-bold mb-2 ${popup.success ? 'text-green-700' : 'text-red-700'}`}>
+              {popup.success ? 'نجاح!' : 'خطأ!'}
+            </h2>
+            <p className="mb-6 text-gray-600 text-sm">{popup.message}</p>
+            <button 
+              onClick={() => {
+                setPopup({ ...popup, show: false });
+                if (popup.success) {
+                  navigate('/');
+                }
+              }} 
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+            >
+              إغلاق
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Loading Overlay */}
+      {submitting && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center">
+            <div className="relative">
+              <div className="w-16 h-16 border-4 border-blue-200 rounded-full animate-spin border-t-blue-600"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-8 h-8 bg-blue-600 rounded-full animate-pulse"></div>
+              </div>
+            </div>
+            <div className="text-blue-600 font-semibold text-base mt-4">جاري إرسال البيانات...</div>
+            <div className="text-gray-500 text-sm mt-1">يرجى الانتظار</div>
+          </div>
+        </div>
+      )}
     </div>
+    
+    {/* Custom CSS for animations */}
+    <style jsx>{`
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .animation-delay-2000 {
+        animation-delay: 2s;
+      }
+      
+      .animation-delay-4000 {
+        animation-delay: 4s;
+      }
+    `}</style>
+    
     <Footer />
     </>
   );

@@ -33,9 +33,9 @@ const features = [
         <path d="M12 8v4l3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
-    title: 'تصويت إلكتروني آمن',
+    title: 'تصويت افتراضي إلكتروني آمن',
     subtitle: 'سهولة وسرعة',
-    description: 'تصويت إلكتروني مشفر يضمن أمان صوتك وسرعة النتائج، مع دعم فني متواصل.',
+    description: 'تصويت افتراضي إلكتروني سهل وسريع يضمن أمان صوتك وسرعة ظهور النتائج، مع دعم فني متواصل.',
     badge: 'آمن',
   },
   {
@@ -47,7 +47,7 @@ const features = [
     ),
     title: 'نتائج فورية وموثوقة',
     subtitle: 'دقة وشفافية',
-    description: 'عرض النتائج بشكل فوري وموثوق، مع تقارير تفصيلية لكل دائرة انتخابية.',
+    description: ' عرض النتائج بشكل فوري وموثوق، مع تقارير تفصيلية لكل دائرة انتخابية والى كل مرشح. ',
     badge: 'فوري',
   },
 ];
@@ -63,7 +63,7 @@ const FeaturesSection = () => {
   const scaleProgress = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
   
   return (
-    <section className="py-16 md:py-32 relative overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white" dir="rtl">
+    <section className="py-10 md:py-20 relative overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white" dir="rtl">
       {/* Animated Background Pattern */}
       <motion.div 
         className="absolute inset-0 opacity-5"
@@ -94,7 +94,7 @@ const FeaturesSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         {/* Section Header with Scroll Animation */}
         <motion.div 
-          className="text-center mb-16 md:mb-32"
+          className="text-center mb-16 md:mb-28"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -111,13 +111,13 @@ const FeaturesSection = () => {
             <div className="h-px w-12 md:w-24 bg-gradient-to-l from-transparent to-blue-600"></div>
           </motion.div>
           
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-slate-900 mb-4 md:mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 mb-4 md:mb-6">
             ميزات 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-700"> استثنائية</span>
           </h2>
           
-          <p className="text-base md:text-xl text-gray-600 font-light max-w-3xl mx-auto px-4">
-            تقنيات متطورة وحلول مبتكرة لضمان انتخابات شفافة وعادلة
+          <p className="text-base md:text-lg text-gray-600 font-light max-w-3xl mx-auto px-4">
+          صوتك امانة هو تجربة رقمية متقدمة وغير رسمية تهدف  إلى تعزيز المشاركة والتواصل بكل شفافية ونزاهة وحيادية في الانتخابات البرلمانية العراقية . مع واجهة استخدام عصرية تدعم جميع الأجهزة. التطبيق يوفر تقارير فورية ونتائج لحظية، ويتيح التواصل المباشر بين الناخبين والمرشحين. المنصة تركز على الشفافية، وسرعة الوصول للمعلومات، مع ضمان حماية خصوصية المستخدمين وسهولة الوصول للجميع.          
           </p>
         </motion.div>
 
@@ -133,7 +133,7 @@ const FeaturesSection = () => {
           />
 
           {/* Features - Mobile Stack Layout */}
-          <div className="space-y-12 md:space-y-32">
+          <div className="space-y-12 md:space-y-14">
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
@@ -168,7 +168,7 @@ const FeaturesSection = () => {
                       {feature.subtitle}
                     </p>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      {feature.description}
+                      {feature.description.replace('تشفير', '').replace('تصويت افتراضي إلكتروني مشفر يضمن أمان صوتك وسرعة النتائج، مع دعم فني متواصل.', 'تصويت إلكتروني سهل وسريع يضمن أمان صوتك وسرعة ظهور النتائج، مع دعم فني متواصل.')} 
                     </p>
                   </motion.div>
                 </div>
@@ -200,7 +200,7 @@ const FeaturesSection = () => {
                       </p>
                       
                       <p className="text-gray-600 text-lg leading-relaxed">
-                        {feature.description}
+                        {feature.description.replace('تشفير', '').replace('تصويت افتراضي إلكتروني مشفر يضمن أمان صوتك وسرعة النتائج، مع دعم فني متواصل.', 'تصويت إلكتروني سهل وسريع يضمن أمان صوتك وسرعة ظهور النتائج، مع دعم فني متواصل.')} 
                       </p>
                     </div>
                   </motion.div>
@@ -241,13 +241,13 @@ const FeaturesSection = () => {
 
         {/* Benefits Section - Mobile Optimized */}
         <motion.div 
-          className="mt-16 md:mt-32 relative"
+          className="mt-8 md:mt-16 relative"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl md:rounded-3xl p-8 md:p-16 relative overflow-hidden">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl md:rounded-3xl p-5 md:p-8 relative overflow-hidden">
             {/* Animated Background Pattern */}
             <motion.div 
               className="absolute inset-0 opacity-10"
@@ -261,53 +261,55 @@ const FeaturesSection = () => {
             />
 
             <div className="relative z-10">
-              <div className="text-center mb-8 md:mb-16">
-                <h3 className="text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6">
+              <div className="text-center mb-6 md:mb-10">
+                <h3 className="text-2xl md:text-4xl font-bold text-white mb-3 md:mb-4">
                   لماذا منصة 
                   <span className="text-blue-200"> صوتك أمانة؟</span>
                 </h3>
-                <p className="text-base md:text-xl text-blue-100 font-light max-w-3xl mx-auto px-4">
+                <p className="text-sm md:text-lg text-blue-100 font-light max-w-3xl mx-auto px-4">
                   نضع بين يديك منصة متكاملة تجمع بين الأمان والشفافية والسهولة، لتضمن لك تجربة انتخابية موثوقة وفعالة.
                 </p>
               </div>
 
               {/* Benefits Grid - Mobile Optimized */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 mb-6 md:mb-10">
                 {[
-                  'تقنية تشفير متقدمة لحماية بياناتك وصوتك',
+                  'حماية خصوصيتك وبياناتك بأحدث معايير الأمان الرقمي',
                   'واجهة سهلة الاستخدام متاحة بجميع اللغات',
                   'دعم فني على مدار الساعة طوال أيام الأسبوع',
-                  'تقارير شفافة ونتائج فورية موثقة'
+                  'تقارير شفافة ونتائج فورية موثقة لجميع الدوائر الانتخابية',
+                  'إمكانية المشاركة من أي مكان داخل العراق أو خارجه',
+                  'إحصائيات ذكية وتقارير تحليلية تساعد الناخبين والمرشحين وصناع القرار على فهم العملية الانتخابية بشكل أفضل'
                 ].map((item, idx) => (
                   <motion.div 
                     key={idx}
-                    className="flex items-start gap-3 md:gap-4"
+                    className="flex items-start gap-2 md:gap-3"
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.1 }}
                   >
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
-                      <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 md:w-5 md:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-white text-sm md:text-lg leading-relaxed">{item}</span>
+                    <span className="text-white text-xs md:text-base leading-relaxed">{item}</span>
                   </motion.div>
                 ))}
               </div>
 
               {/* Stats Row - Mobile Optimized */}
               <motion.div 
-                className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+                className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
                 {[
                   { number: '100%', label: 'آمن' },
-                  { number: '24/7', label: 'دعم' },
-                  { number: '256bit', label: 'تشفير' },
+                  { number: '24/7', label: 'دعم فني' },
+                  { number: '100+', label: 'ميزة رقمية' },
                   { number: '∞', label: 'موثوقية' }
                 ].map((stat, idx) => (
                   <motion.div
@@ -316,8 +318,8 @@ const FeaturesSection = () => {
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2">{stat.number}</div>
-                    <div className="text-blue-200 text-xs md:text-sm uppercase tracking-wider">{stat.label}</div>
+                    <div className="text-lg md:text-2xl font-bold text-white mb-0.5 md:mb-1">{stat.number}</div>
+                    <div className="text-blue-200 text-[10px] md:text-xs uppercase tracking-wider">{stat.label}</div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -327,7 +329,7 @@ const FeaturesSection = () => {
 
         {/* Call to Action - Mobile Optimized */}
         <motion.div 
-          className="mt-16 md:mt-32 text-center relative px-4"
+          className="mt-16 md:mt-20 text-center relative px-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -370,7 +372,7 @@ const FeaturesSection = () => {
             </div>
           </motion.div>
           
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 md:mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 md:mb-6">
             جاهز للخطوة 
             <span className="text-blue-600"> التالية؟</span>
           </h2>
@@ -381,7 +383,7 @@ const FeaturesSection = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
             <motion.button 
-              className="relative group w-full sm:w-auto px-8 md:px-16 py-4 md:py-6 overflow-hidden"
+              className="relative group w-full sm:w-auto px-8 md:px-16 py-4 md:py-4 overflow-hidden"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setShowComingSoon(true)}
@@ -411,20 +413,6 @@ const FeaturesSection = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                 </motion.svg>
               </span>
-            </motion.button>
-            
-            <motion.button 
-              className="w-full sm:w-auto px-8 md:px-16 py-4 md:py-6 border-2 border-blue-600 text-blue-600 rounded-xl md:rounded-2xl font-bold text-base md:text-lg relative overflow-hidden group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <motion.div 
-                className="absolute inset-0 bg-blue-50"
-                initial={{ scale: 0 }}
-                whileHover={{ scale: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-              <span className="relative">معرفة المزيد</span>
             </motion.button>
           </div>
           

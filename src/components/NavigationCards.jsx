@@ -47,7 +47,7 @@ const cards = [
     features: [
       "معلومات شاملة عن جميع المرشحين",
       "مقارنة سهلة بين البرامج الانتخابية",
-      "تصويت آمن وموثوق"
+      "تواصل امن وموثوق"
     ]
   }
 ];
@@ -146,7 +146,7 @@ const NavigationCards = () => {
           
           <motion.h2 
             variants={itemAnimation}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900"
+            className="text-xl md:text-2xl lg:text-4xl font-bold text-slate-900"
           >
             استكشف 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-700"> خدماتنا</span>
@@ -154,7 +154,7 @@ const NavigationCards = () => {
           
           <motion.p 
             variants={itemAnimation}
-            className="text-xl text-gray-600 font-light max-w-3xl mx-auto"
+            className="text-lg text-gray-600 font-light max-w-3xl mx-auto"
           >
             كل ما تحتاجه كناخب أو مرشح في مكان واحد
           </motion.p>

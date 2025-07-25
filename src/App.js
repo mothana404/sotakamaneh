@@ -8,6 +8,7 @@ import CandidateDetailsPage from './components/CandidateDetailsPage';
 import AboutUs from './pages/AboutUs';
 import NotFound from './components/NotFound';
 import ScrollToTop from './components/ScrollToTop';
+import CandidatesPage from './pages/CandidatesPage';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/register" element={<CandidateRegistration />} />
           <Route path="/candidate/:id" element={<CandidateDetailsPage />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/candidatesPage" element={<CandidatesPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ScrollToTop />

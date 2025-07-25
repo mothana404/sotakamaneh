@@ -2,47 +2,138 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/newlogo.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="./newlogo.jpg" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#3B82F6" />
+    
+    <!-- العنوان الأساسي - صوتك امانة في البداية -->
+    <title>صوتك امانة - الموقع الرسمي | منصة الانتخابات العراقية</title>
+    
+    <!-- الوصف المحسّن -->
     <meta
       name="description"
-      content="صوتك أمانة - منصة الانتخابات البرلمانية العراقية. منصة رقمية متطورة لتحسين العملية الانتخابية مع التركيز على الشفافية والمصداقية."
+      content="صوتك امانة - صوتك امانة هي منصة رقمية عراقية تهدف لتعزيز الشفافية في الانتخابات البرلمانية."
     />
-    <meta name="keywords" content="انتخابات, العراق, صوتك أمانة, مرشحين, ناخبين, ديمقراطية, شفافية" />
-    <meta name="author" content="صوتك أمانة" />
+    
+    <!-- الكلمات المفتاحية المحسّنة -->
+    <meta
+      name="keywords"
+      content="صوتك امانة, صوتك أمانة, sawtakamana, sawtak amana, موقع صوتك امانة, منصة صوتك امانة, صوتك امانة العراق"
+    />
+    
+    <meta name="author" content="صوتك امانة" />
     <meta name="robots" content="index, follow" />
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sotakamanah.com/" />
-    <meta property="og:title" content="صوتك أمانة - منصة الانتخابات البرلمانية العراقية" />
-    <meta property="og:description" content="منصة رقمية متطورة لتحسين العملية الانتخابية مع التركيز على الشفافية والمصداقية" />
-    <meta property="og:image" content="%PUBLIC_URL%/newlogo.jpg" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sotakamanah.com/" />
-    <meta property="twitter:title" content="صوتك أمانة - منصة الانتخابات البرلمانية العراقية" />
-    <meta property="twitter:description" content="منصة رقمية متطورة لتحسين العملية الانتخابية مع التركيز على الشفافية والمصداقية" />
-    <meta property="twitter:image" content="%PUBLIC_URL%/newlogo.jpg" />
-
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/newlogo.jpg" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sawtakamana.com/" />
     
-    <!-- Preconnect to external domains for better performance -->
+    <!-- English meta tags -->
+    <meta
+      name="description"
+      lang="en"
+      content="Sawtakamana (Your Vote is a Trust) - Official website of the independent electoral platform. Sawtakamana is an Iraqi digital platform promoting transparency in parliamentary elections."
+    />
+    <meta
+      name="keywords"
+      lang="en"
+      content="sawtakamana, sawtak amana, your vote is a trust, iraq elections, صوتك امانة"
+    />
+    
+    <!-- Language alternatives -->
+    <link rel="alternate" href="https://sawtakamana.com/" hreflang="ar" />
+    <link rel="alternate" href="https://sawtakamana.com/en" hreflang="en" />
+    <link rel="alternate" href="https://sawtakamana.com/" hreflang="x-default" />
+    
+    <!-- Open Graph tags محسّنة -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sawtakamana.com/" />
+    <meta property="og:title" content="صوتك امانة - الموقع الرسمي" />
+    <meta property="og:site_name" content="صوتك امانة" />
+    <meta
+      property="og:description"
+      content="صوتك امانة - منصة رقمية مستقلة للانتخابات البرلمانية العراقية. تعزيز الشفافية والمصداقية في العملية الانتخابية."
+    />
+    <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/giftify-894d5.appspot.com/o/newlogo.jpg?alt=media&token=48d044e2-ab66-43c7-b1ae-78d7e9515aa9" />
+    <meta property="og:image:alt" content="صوتك امانة - شعار المنصة" />
+    <meta property="og:locale" content="ar_IQ" />
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="صوتك امانة - الموقع الرسمي" />
+    <meta name="twitter:description" content="صوتك امانة - منصة رقمية مستقلة للانتخابات البرلمانية العراقية" />
+    <meta property="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/giftify-894d5.appspot.com/o/newlogo.jpg?alt=media&token=48d044e2-ab66-43c7-b1ae-78d7e9515aa9" />
+    
+    <link rel="apple-touch-icon" href="newlogo.jpg" />
+    <link rel="manifest" href="/manifest.json" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="newlogo.jpg" as="image" />
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="%PUBLIC_URL%/newlogo.jpg" as="image" />
+    <!-- Enhanced Schema markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "صوتك امانة",
+        "alternateName": ["Sawtakamana", "صوتك أمانة", "Sawtak Amana"],
+        "url": "https://sawtakamana.com/",
+        "description": "صوتك امانة - منصة رقمية مستقلة للانتخابات البرلمانية العراقية",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://sawtakamana.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
     
-    <title>صوتك أمانة - منصة الانتخابات البرلمانية العراقية</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "صوتك امانة",
+        "alternateName": ["Sawtakamana", "صوتك أمانة", "Sawtak Amana"],
+        "url": "https://sawtakamana.com/",
+        "logo": "https://firebasestorage.googleapis.com/v0/b/giftify-894d5.appspot.com/o/newlogo.jpg?alt=media&token=48d044e2-ab66-43c7-b1ae-78d7e9515aa9",
+        "description": "صوتك امانة - منصة مستقلة للانتخابات البرلمانية العراقية. منصة رقمية متطورة تهدف إلى تعزيز الشفافية والمصداقية في العملية الانتخابية.",
+        "sameAs": [
+          "https://www.facebook.com/people/%D9%86%D8%AE%D8%A8%D8%A9-%D9%85%D8%B1%D8%B4%D8%AD%D9%8A%D9%86-%D8%A7%D9%84%D8%B9%D8%B1%D8%A7%D9%82-%D9%84%D9%84%D8%A8%D8%B1%D9%84%D9%85%D8%A7%D9%86-2025/61569945720669/"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "availableLanguage": ["Arabic"]
+        }
+      }
+    </script>
+    
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "صوتك امانة",
+          "item": "https://sawtakamana.com/"
+        }]
+      }
+    </script>
+    
+    <script defer="defer" src="/static/js/main.60c58414.js"></script>
+    <link href="/static/css/main.fffc9f6a.css" rel="stylesheet" />
   </head>
   <body>
     <noscript>
-      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
-        <h1>صوتك أمانة</h1>
+      <div
+        style="
+          text-align: center;
+          padding: 50px;
+          font-family: Arial, sans-serif;
+        "
+      >
+        <h1>صوتك امانة</h1>
+        <p>صوتك امانة - منصة الانتخابات البرلمانية العراقية</p>
         <p>يجب تفعيل JavaScript لتشغيل هذا التطبيق.</p>
         <p>You need to enable JavaScript to run this app.</p>
       </div>

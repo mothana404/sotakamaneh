@@ -32,6 +32,7 @@ const Navbar = () => {
     { name: "من نحن", path: "/about" },
     { name: "حلول المرشحين", path: "/candidate-solutions" },
     { name: "حلول الناخبين", path: "/voter-solutions" },
+    { name: "صفحة المرشحين", path: "/candidatesPage" },
     { name: "سجل كمرشح", path: "/register" },
   ], []);
 
@@ -55,7 +56,7 @@ const Navbar = () => {
         isTransparent ? "opacity-40" : "opacity-100"
       }`} />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="max-w-8xl mx-auto px-6 sm:px-10 lg:px-16">
         <nav className="flex items-center justify-between h-22" dir="rtl">
           
           {/* Enhanced Logo Section */}

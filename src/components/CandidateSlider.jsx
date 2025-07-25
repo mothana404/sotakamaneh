@@ -3,7 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,6 +14,7 @@ const CandidateSlider = () => {
   const [candidates, setCandidates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -26,8 +27,9 @@ const CandidateSlider = () => {
             id: c.id,
             name: c.user.first_name + " " + c.user.last_name,
             list: c.party_bloc_name || "مستقل",
-            constituency_id: c.constituency_id,
+            constituency_id: c.list_number,
             province: c.constituency?.name || "غير محدد",
+            serialNumber: c.serial_number,
             image:
               c.profile_image ||
               "https://www.elections.ab.ca/uploads/Candidate.png",
@@ -53,8 +55,18 @@ const CandidateSlider = () => {
           <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]">
             <svg width="100%" height="100%" viewBox="0 0 400 400">
               <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e40af" strokeWidth="1"/>
+                <pattern
+                  id="grid"
+                  width="40"
+                  height="40"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M 40 0 L 0 0 0 40"
+                    fill="none"
+                    stroke="#1e40af"
+                    strokeWidth="1"
+                  />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
@@ -83,8 +95,18 @@ const CandidateSlider = () => {
           <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]">
             <svg width="100%" height="100%" viewBox="0 0 400 400">
               <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e40af" strokeWidth="1"/>
+                <pattern
+                  id="grid"
+                  width="40"
+                  height="40"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M 40 0 L 0 0 0 40"
+                    fill="none"
+                    stroke="#1e40af"
+                    strokeWidth="1"
+                  />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
@@ -108,16 +130,31 @@ const CandidateSlider = () => {
       <div className="absolute inset-0">
         {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50"></div>
-        
+
         {/* Geometric patterns */}
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]">
           <svg width="100%" height="100%" viewBox="0 0 400 400">
             <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e40af" strokeWidth="1"/>
+              <pattern
+                id="grid"
+                width="40"
+                height="40"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 40 0 L 0 0 0 40"
+                  fill="none"
+                  stroke="#1e40af"
+                  strokeWidth="1"
+                />
               </pattern>
-              <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="10" cy="10" r="1" fill="#1e40af"/>
+              <pattern
+                id="dots"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <circle cx="10" cy="10" r="1" fill="#1e40af" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
@@ -134,19 +171,62 @@ const CandidateSlider = () => {
         {/* Hexagonal pattern */}
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 opacity-[0.02]">
           <svg width="200" height="200" viewBox="0 0 200 200">
-            <polygon points="100,10 173,50 173,130 100,170 27,130 27,50" fill="none" stroke="#1e40af" strokeWidth="2"/>
-            <polygon points="100,30 153,60 153,120 100,150 47,120 47,60" fill="none" stroke="#1e40af" strokeWidth="1"/>
-            <polygon points="100,50 133,70 133,110 100,130 67,110 67,70" fill="none" stroke="#1e40af" strokeWidth="1"/>
+            <polygon
+              points="100,10 173,50 173,130 100,170 27,130 27,50"
+              fill="none"
+              stroke="#1e40af"
+              strokeWidth="2"
+            />
+            <polygon
+              points="100,30 153,60 153,120 100,150 47,120 47,60"
+              fill="none"
+              stroke="#1e40af"
+              strokeWidth="1"
+            />
+            <polygon
+              points="100,50 133,70 133,110 100,130 67,110 67,70"
+              fill="none"
+              stroke="#1e40af"
+              strokeWidth="1"
+            />
           </svg>
         </div>
 
         {/* Decorative lines */}
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.05]">
           <svg width="100%" height="100%">
-            <line x1="0" y1="20%" x2="100%" y2="25%" stroke="#1e40af" strokeWidth="1"/>
-            <line x1="0" y1="40%" x2="100%" y2="35%" stroke="#1e40af" strokeWidth="1"/>
-            <line x1="0" y1="60%" x2="100%" y2="65%" stroke="#1e40af" strokeWidth="1"/>
-            <line x1="0" y1="80%" x2="100%" y2="75%" stroke="#1e40af" strokeWidth="1"/>
+            <line
+              x1="0"
+              y1="20%"
+              x2="100%"
+              y2="25%"
+              stroke="#1e40af"
+              strokeWidth="1"
+            />
+            <line
+              x1="0"
+              y1="40%"
+              x2="100%"
+              y2="35%"
+              stroke="#1e40af"
+              strokeWidth="1"
+            />
+            <line
+              x1="0"
+              y1="60%"
+              x2="100%"
+              y2="65%"
+              stroke="#1e40af"
+              strokeWidth="1"
+            />
+            <line
+              x1="0"
+              y1="80%"
+              x2="100%"
+              y2="75%"
+              stroke="#1e40af"
+              strokeWidth="1"
+            />
           </svg>
         </div>
       </div>
@@ -154,15 +234,16 @@ const CandidateSlider = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-4xl font-bold mb-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-blue-600">المرشحون</span> للانتخابات البرلمانية
+            <span className="text-blue-600">المرشحون</span> للانتخابات
+            البرلمانية
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="w-24 h-1 bg-blue-600 mx-auto mb-6"
             initial={{ width: 0 }}
             animate={{ width: 96 }}
@@ -203,12 +284,12 @@ const CandidateSlider = () => {
                     {/* Decorative corner elements */}
                     <div className="absolute top-0 right-0 w-16 h-16 opacity-10">
                       <svg viewBox="0 0 64 64" className="w-full h-full">
-                        <path d="M0,0 L64,0 L64,64 Z" fill="#1e40af"/>
+                        <path d="M0,0 L64,0 L64,64 Z" fill="#1e40af" />
                       </svg>
                     </div>
                     <div className="absolute bottom-0 left-0 w-12 h-12 opacity-5">
                       <svg viewBox="0 0 48 48" className="w-full h-full">
-                        <path d="M0,48 L48,48 L0,0 Z" fill="#1e40af"/>
+                        <path d="M0,48 L48,48 L0,0 Z" fill="#1e40af" />
                       </svg>
                     </div>
 
@@ -222,14 +303,17 @@ const CandidateSlider = () => {
                           alt={candidate.name}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           onError={(e) => {
-                            e.target.src = "https://www.elections.ab.ca/uploads/Candidate.png";
+                            e.target.src =
+                              "https://www.elections.ab.ca/uploads/Candidate.png";
                           }}
                         />
 
                         {/* Constituency Badge */}
                         <div className="absolute top-4 right-4 z-20">
                           <span className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-sm font-semibold shadow-lg backdrop-blur-sm">
-                            {candidate.constituency_id}
+                            {candidate.serialNumber
+                              ? candidate.serialNumber
+                              : ""}
                           </span>
                         </div>
                       </div>
@@ -254,8 +338,18 @@ const CandidateSlider = () => {
                             </span>
                             <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
                               <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                  />
                                 </svg>
                               </div>
                             </span>
@@ -272,6 +366,31 @@ const CandidateSlider = () => {
             ))}
           </Swiper>
         </motion.div>
+
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+          <motion.button
+            className="relative group w-full sm:w-auto px-8 md:px-16 py-4 md:py-4 overflow-hidden"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate("/candidatesPage")}
+          >
+            {/* Button Background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl md:rounded-2xl" />
+
+            {/* Hover Effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl md:rounded-2xl"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+
+            {/* Button Content */}
+            <span className="relative flex items-center justify-center gap-2 md:gap-3 text-white font-bold text-base md:text-lg">
+              عرض المرشحين
+            </span>
+          </motion.button>
+        </div>
       </div>
 
       <style jsx>{`
@@ -331,7 +450,7 @@ const CandidateSlider = () => {
           .candidate-slider .swiper-button-prev {
             display: none;
           }
-          
+
           .candidate-slider {
             padding: 20px 0 60px;
           }
